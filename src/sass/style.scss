@@ -1,3 +1,206 @@
-.index{
-    font-size: 1px;
+
+// ============ 公用 ============ // 
+@use "sass:math";
+
+// 基本變數定義
+@import "base/base";
+
+
+// 斷點
+// 768px 
+@mixin pad(){
+    @media all and (max-width: $l_breakpoint){
+        @content;
+        
+    }
 }
+// 414px
+@mixin mobile(){
+    @media all and (max-width: $m_breakpoint){
+        @content;
+    }
+}
+
+body {
+    font-family: "Noto Sans TC";
+    line-height: 1.6;
+    font-size: 16px;
+    letter-spacing: 1px;
+    box-sizing: border-box;
+}
+.fulid_wrapper {
+    margin: 0 auto;
+    width: 100%;
+}
+.wrapper {
+    margin: 0 auto;
+    max-width: 1400px;
+}
+
+// ============ 公用END ============ //
+
+.container{
+    background-image: url(../img/baseColor.png);
+    background-position: center center;
+    background-size: cover;
+    .header{
+        position: relative;
+        z-index: 2;
+        .whiteWaves{
+            
+            img{
+                &:first-child{
+                    z-index: 1;
+                    position: absolute;
+                    top: 13%;
+                    left: 0%;
+                }
+                &:nth-child(2){
+                    z-index: 1;
+                    position: absolute;
+                    top: 28%;
+                    left: 0%;
+                }
+                &:last-child{
+                    z-index: 1;
+                    position: absolute;
+                    top: 78%;
+                    left: 0%;
+                }
+            }
+        }
+        
+        .top{
+            padding-top: 60px;
+            display: flex;
+            flex-direction: column;
+            .top_title{
+                font-weight: 700;
+                margin: 0 auto;
+                width: 328px;
+                font-style: normal;
+                letter-spacing: 0.2em;
+                text-align: center;
+                color: #FFFFFF;
+                h1{
+                    font-size: 32px;
+                    line-height: 125%;
+                }
+                h2{
+                    font-size: 28px;
+                    line-height: 125%;
+                }
+                margin-bottom: 32px;
+            }
+            .top_btn{
+                position: relative; // 為了要覆蓋白色海浪
+                z-index: 999;
+                display: block;
+                margin: 0 auto 32px;
+                order: 0;
+                flex-grow: 0;
+                p{
+                    color: #FFFFFF;
+                    font-weight: 700;
+                    font-size: 18px;
+                    letter-spacing: 0.2em;
+                }
+            }
+            .top_Paragraph{
+                background-color: $Primary_Color_3;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                padding: 24px 16px;
+                margin: 0 auto;
+                gap: 24px;
+                width: 808px;
+                height: 322px;
+                border: 2px solid #B57556;
+                border-radius: 20px;
+                position: relative;
+                z-index: 999; // 為了要覆蓋白色海浪
+                .supBubble{
+                    img{
+                        display: block;
+                        &:first-child{
+                            position: absolute;
+                            right: 0;
+                            top: -10%;
+                        }
+                        &:nth-child(2){
+                            width: 20px;
+                            position: absolute;
+                            right: 4%;
+                            top: -17%;
+                        }
+                        &:last-child{
+                            position: absolute;
+                            right: 2%;
+                            top: -25%;
+                        }
+                    }
+                }
+
+                .section{
+                    width: 776px;
+                    margin-bottom: 24.5px;
+                    .title{
+                        position: relative;
+                        margin-bottom: 16px;
+                        p{
+                            margin: 0 auto;
+                            width: 92px;
+                            text-align: center;
+                        }
+                        img{
+                            &:first-child{
+                                position: absolute;
+                                right: 315px;
+                                top: -10px;
+                            
+                            }
+                            &:last-child{
+                                position: absolute;
+                                left: 308px;
+                                top: -10px;
+                            }
+                        }
+                    }
+                    ol.orderList{
+                        padding: 0px 16px;
+                        list-style: decimal;
+                    }
+                }
+
+                .supFireworks{
+                    img{
+                        display: block;
+                        &:first-child{
+                            position: absolute;
+                            left: 3%;
+                            bottom: -17%;
+                        }
+                        &:last-child{
+                            position: absolute;
+                            left: 0;
+                            bottom: -18%;
+                        }
+                    }
+                }
+            }
+        }
+        .theWaves{
+            display: block;
+            margin-top: 34px;
+            height: 109.54px;
+            width: 1400px;
+            background-repeat: repeat-x;
+            background-image: url(../img/theWaves.png);
+        }
+    }
+}
+
+
+
+
