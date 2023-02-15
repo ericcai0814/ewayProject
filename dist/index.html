@@ -1,100 +1,174 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/style.css">
-    <title>鎰威科技前端面試考題</title>
-</head>
-<!-- h1 32px -->
-<!-- h2 28px -->
-<!-- btn 18px  -->
-<body>
-    <div class="container wrapper">
-        <div class="header">
-            <!-- 白色海浪 -->
-            <div class="whiteWaves">
-                <img src="./img/whiteWaves1.png" alt="whiteWaves1">
-                <img src="./img/whiteWaves2.png" alt="whiteWaves2">
-                <img src="./img/whiteWaves3.svg" alt="whiteWaves3">
-            </div>
-            <div class="top">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="css/style.css">
+        <title>鎰威科技前端面試考題</title>
+    </head>
+    <!-- h1 32px -->
+    <!-- h2 28px -->
+    <!-- btn 18px -->
+    <body>
+        <div class="container wrapper">
+            <div class="header">
+                <!-- 白色海浪 -->
+                <div class="whiteWaves">
+                    <img src="./img/whiteWaves1.png" alt="whiteWaves1">
+                    <img src="./img/whiteWaves2.png" alt="whiteWaves2">
+                    <img src="./img/whiteWaves3.svg" alt="whiteWaves3">
+                </div>
+                <div class="top">
 
-                <!-- 標題 -->
-                <div class="top_title">
-                    <h1>There is no one</h1>
-                    <h2>who loves pain</h2>
+                    <!-- 標題 -->
+                    <div class="top_title">
+                        <h1>There is no one</h1>
+                        <h2>who loves pain</h2>
+                    </div>
+
+                    <!-- 按鈕 -->
+                    <div class="top_btn">
+                        <button class="default btn">
+                            <p>FORM</p>
+                        </button>
+                    </div>
+
+                    <!-- 內文 -->
+                    <div class="top_Paragraph">
+                        <div class="section">
+                            <div class="title">
+                                <!-- 仙人掌 -->
+                                <img src="./img/cactus.png" alt="cactus">
+                                <p class="font18">paragraph</p>
+                                <!-- 仙人掌 -->
+                                <img src="./img/cactus.png" alt="cactus">
+                            </div>
+                            <ol class="orderList">
+                                <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
+                            </ol>
+                        </div>
+
+                        <div class="section">
+                            <div class="title">
+                                <!-- 仙人掌 -->
+                                <img src="./img/cactus.png" alt="cactus">
+                                <p class="font18">paragraph</p>
+                                <!-- 仙人掌 -->
+                                <img src="./img/cactus.png" alt="cactus">
+                            </div>
+                            <ol class="orderList">
+                                <li>Quisque sodales leo vitae vulputate auctor.</li>
+                                <li>Proin ac justo ut nisl tincidunt imperdiet.Maecenas viverra libero a
+                                    pellentesque blandit.</li>
+                                <li>Cras tristique tellus id leo bibendum, eu dapibus nisl accumsan.</li>
+                                <li>Donec ultrices sapien vitae leo venenatis ullamcorper.</li>
+                            </ol>
+                        </div>
+
+                        <!-- 獨木舟 & 泡泡 -->
+                        <div class="supBubble">
+                            <img src="./img/sup.svg" alt="sup">
+                            <img src="./img/Bubble.png" alt="Bubble">
+                            <img src="./img/Bubble.png" alt="Bubble">
+                        </div>
+
+                        <!-- 獨木舟 & 煙火 -->
+                        <div class="supFireworks">
+                            <img src="./img/sup.png" alt="sup">
+                            <img src="./img/fireworks.svg" alt="Fireworks">
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="theWaves"></div>
+            </div>
+
+            <article class="main">
+
+                <!-- 表單 -->
+                <div class="form">
+                    <div class="title">
+                        <p>FORM</p>
+                        <img src="./img/turtle.png" alt="turtle">
+                    </div>
+                    <div class="formCotent">
+                        <div class="formList">
+                            <p>store</p>
+                            <img src="./img/dropDown.png" alt="dropDown">
+                            <input
+                                type="text"
+                                class="fromItem"
+                                list="storelist"
+                                placeholder="placeholder text">
+                            <datalist id="storelist" class="chooseItem">
+                                <option value="Option1">store1</option>
+                                <option value="Option2">store2</option>
+                                <option value="Option3">store3</option>
+                            </datalist>
+                        </div>
+                        <div class="formList">
+                            <p>name</p>
+                            <input
+                                type="text"
+                                id="fromName"
+                                class="fromItem"
+                                placeholder="placeholder text"
+                                v-model.trim="member_info.addr"/>
+                        </div>
+                        <div class="formList">
+                            <p>phone</p>
+                            <input
+                                type="text"
+                                id="fromName"
+                                class="fromItem"
+                                placeholder="placeholder text"
+                                v-model.trim="member_info.addr"/>
+                        </div>
+                        <div class="formList">
+                            <p>Amount of consumption</p>
+                            <input
+                                type="text"
+                                id="fromName"
+                                class="fromItem"
+                                placeholder="placeholder text"
+                                v-model.trim="member_info.addr"/>
+                        </div>
+                        <div class="formList">
+                            <p>payment</p>
+                            <img src="./img/dropDown.png" alt="dropDown">
+                            <input
+                                type="text"
+                                class="fromItem"
+                                list="storelist"
+                                placeholder="placeholder text">
+                            <datalist id="storelist" class="chooseItem">
+                                <option value="Option1">store1</option>
+                                <option value="Option2">store2</option>
+                                <option value="Option3">store3</option>
+                            </datalist>
+                        </div>
+                    </div>
                 </div>
 
                 <!-- 按鈕 -->
                 <div class="top_btn">
                     <button class="default btn">
-                            <p>FORM</p>
+                        <p>FORM</p>
                     </button>
                 </div>
+            </article>
 
-                <!-- 內文 -->
-                <div class="top_Paragraph">
-                    <!-- 獨木舟 & 泡泡 -->
-                    <div class="supBubble">
-                        <img src="./img/sup.svg" alt="sup">
-                        <img src="./img/Bubble.png" alt="Bubble">
-                        <img src="./img/Bubble.png" alt="Bubble">
-                    </div>
-
-                    <div class="section">
-                        <div class="title">
-
-                            <!-- 仙人掌 -->
-                            <img src="./img/cactus.png" alt="cactus">
-
-                            <p class="font18">paragraph</p>
-
-                            <!-- 仙人掌 -->
-                            <img src="./img/cactus.png" alt="cactus">
-
-                        </div>
-                        <ol class="orderList">
-                            <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
-                        </ol>
-                    </div>
-                    <div class="section">
-
-                        <div class="title">
-
-                            <!-- 仙人掌 -->
-                            <img src="./img/cactus.png" alt="cactus">
-
-                            <p class="font18">paragraph</p>
-
-                            <!-- 仙人掌 -->
-                            <img src="./img/cactus.png" alt="cactus">
-
-                        </div>
-                        <ol class="orderList">
-
-                            <li>Quisque sodales leo vitae vulputate auctor.</li>
-                            <li>Proin ac justo ut nisl tincidunt imperdiet.Maecenas viverra libero a pellentesque blandit.</li>
-                            <li>Cras tristique tellus id leo bibendum, eu dapibus nisl accumsan.</li>
-                            <li>Donec ultrices sapien vitae leo venenatis ullamcorper.</li>
-                            
-                        </ol>
-                        
-                    </div> 
-                    <!-- 獨木舟 & 煙火 -->
-                    <div class="supFireworks">
-                        <img src="./img/sup.png" alt="sup">
-                        <img src="./img/fireworks.svg" alt="Fireworks">
-                    </div>
-                </div>
-
-            </div>
-
-            <div class="theWaves"></div>
         </div>
-            
-
-    </div>
-</body>
+        <script src=""></script>
+        <script>
+            (function () {
+                // const input = document.getElementById('store'); const datalist =
+                // document.getElementById('storelist'); input.addEventListener('click', () => {
+                // datalist.style.display = 'block'; }); input.addEventListener('blur', () => {
+                // datalist.style.display = 'none'; });
+            })();
+        </script>
+    </body>
 </html>

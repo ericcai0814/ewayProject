@@ -1,4 +1,5 @@
 .default {
+    cursor: pointer;
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -18,6 +19,7 @@
 
 .success {
     /* label */
+    cursor: pointer;
     font-family: 'Noto Sans TC';
     width: 88px;
     height: 23px;
@@ -32,7 +34,7 @@
 
 .failure {
     /* Auto layout */
-
+    cursor: pointer;
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -54,7 +56,10 @@
 
 // ========== btn 動畫 ========== //
 
-
+.btn{
+    position: relative;
+    border: none;
+}
 .btn:focus,
 .btn:hover {
     color: #fff;

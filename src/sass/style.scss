@@ -39,14 +39,14 @@ body {
 
 // ============ 公用END ============ //
 
-.container{
+div.container{
     background-image: url(../img/baseColor.png);
     background-position: center center;
     background-size: cover;
-    .header{
+    div.header{
         position: relative;
         z-index: 2;
-        .whiteWaves{
+        div.whiteWaves{
             
             img{
                 &:first-child{
@@ -70,14 +70,14 @@ body {
             }
         }
         
-        .top{
+        div.top{
             padding-top: 60px;
             display: flex;
             flex-direction: column;
-            .top_title{
+            div.top_title{
                 font-weight: 700;
                 margin: 0 auto;
-                width: 328px;
+                max-width: 328px;
                 font-style: normal;
                 letter-spacing: 0.2em;
                 text-align: center;
@@ -92,7 +92,7 @@ body {
                 }
                 margin-bottom: 32px;
             }
-            .top_btn{
+            div.top_btn{
                 position: relative; // 為了要覆蓋白色海浪
                 z-index: 999;
                 display: block;
@@ -106,51 +106,34 @@ body {
                     letter-spacing: 0.2em;
                 }
             }
-            .top_Paragraph{
+            div.top_Paragraph{
                 background-color: $Primary_Color_3;
                 display: flex;
                 flex-direction: column;
-                align-items: center;
+                // align-items: center;
+                justify-content: space-between;
+                max-width: 808px;
                 padding: 24px 16px;
                 margin: 0 auto;
-                gap: 24px;
-                width: 808px;
-                height: 322px;
+                // gap: 24px;
+                // height: 322px;
                 border: 2px solid #B57556;
                 border-radius: 20px;
                 position: relative;
                 z-index: 999; // 為了要覆蓋白色海浪
-                .supBubble{
-                    img{
-                        display: block;
-                        &:first-child{
-                            position: absolute;
-                            right: 0;
-                            top: -10%;
-                        }
-                        &:nth-child(2){
-                            width: 20px;
-                            position: absolute;
-                            right: 4%;
-                            top: -17%;
-                        }
-                        &:last-child{
-                            position: absolute;
-                            right: 2%;
-                            top: -25%;
-                        }
-                    }
-                }
 
-                .section{
-                    width: 776px;
-                    margin-bottom: 24.5px;
-                    .title{
+                div.section{
+                    max-width: 776px;
+                    &:first-child{
+                        margin-bottom: 24.5px;
+                    }
+                    div.title{
                         position: relative;
                         margin-bottom: 16px;
+                        
                         p{
                             margin: 0 auto;
-                            width: 92px;
+                            max-width: 92px;
                             text-align: center;
                         }
                         img{
@@ -173,7 +156,7 @@ body {
                     }
                 }
 
-                .supFireworks{
+                div.supFireworks{
                     img{
                         display: block;
                         &:first-child{
@@ -188,15 +171,177 @@ body {
                         }
                     }
                 }
+
+                div.supBubble{
+                    img{
+                        display: block;
+                        &:first-child{
+                            position: absolute;
+                            right: 0;
+                            top: -10%;
+                        }
+                        &:nth-child(2){
+                            max-width: 20px;
+                            position: absolute;
+                            right: 4%;
+                            top: -17%;
+                        }
+                        &:last-child{
+                            position: absolute;
+                            right: 2%;
+                            top: -25%;
+                        }
+                    }
+                }
             }
         }
-        .theWaves{
+        div.theWaves{
             display: block;
             margin-top: 34px;
             height: 109.54px;
-            width: 1400px;
+            max-width: 1400px;
             background-repeat: repeat-x;
             background-image: url(../img/theWaves.png);
+        }
+    }
+
+    article.main{
+        background-color: #E2D9D3;
+        padding-top: 60px;
+        div.form{
+            border-radius: 16px;
+            background-color: #fff;
+            margin: 0px auto;
+            width: 808px;
+            height: 575px;
+            position: relative;
+            border: 2px solid $Primary_Color_2;
+            box-shadow: 0px 1px 20px rgba(73, 72, 72, 0.25);
+            border-radius: 16px;
+
+            div.title{
+                display: flex;
+                flex-direction: row;
+                align-items: flex-start;
+                margin: 0 auto;
+                background-color: #fff;
+                border: 2px solid $Primary_Color_2;
+                width: 123px;
+                height: 43px;
+                padding: 10px 20px;
+                border-radius: 50px;
+                position: absolute;
+                top: 0%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                p{
+                    color: $Primary_Color_2;
+                    width: 83px;
+                    height: 23px;
+                    font-size: 18px;
+                    line-height: 23px;
+                    text-align: center;
+                    letter-spacing: 0.2em;
+                    font-style: normal;
+                    font-weight: 700;
+                }
+                img{
+                    position: absolute;
+                    top: -25%;
+                    right: -36%;
+                }
+            }
+            div.formCotent{
+                display: flex;
+                flex-direction: column;
+                div.formList{
+                    margin: 40px auto 20px;
+                    position: relative;
+                    p{
+                        // width: 50px;
+                        font-size: 16px;
+                        color: $Primary_Color_1;
+                        position: relative;
+                        &::after{
+                            display: block;
+                            color: $Primary_Color_2;
+                            content: "*";
+                            width: 5px;
+                            position: absolute;
+                            top: 0%;
+                            right: 1%;
+                        }
+                    }
+                    // 控制 * 位置
+                    &:nth-child(1) p::after {
+                        left: 5.6%;
+                    }
+                    &:nth-child(2) p::after {
+                        left: 5.8%;
+                    }
+                    &:nth-child(3) p::after {
+                        left: 6.6%;
+                    }
+                    &:nth-child(4) p::after {
+                        left: 26%;
+                    }
+                    &:nth-child(5) p::after {
+                        left: 9.2%;
+                    }
+
+                    // 控制 dropDown.png
+                    img{
+                        display: block;
+                        width: 30px;
+                        position: absolute;
+                        right: 3%;
+                        top: 47%;
+                        z-index: 1;
+                    }
+                    
+                    // 控制 input
+                    .fromItem{
+                        border: 1px solid $Primary_Color_1;
+                        background-color: #fff;
+                        color: #BDBDBD;
+                        width: 768px;
+                        height: 57px;
+                        padding: 8px;
+                        position: relative;
+                        -webkit-appearance: none; // 關掉預設樣式
+                        appearance: none;
+                        border-radius: 20px;
+                        &::-webkit-calendar-picker-indicator { // 要寫JS
+                            opacity: 0;
+                        }
+                    }
+                    // 控制 input dataList
+                    .chooseItem datalist {
+                        background: #fff;
+                        color: #BDBDBD;
+                        width: 768px;
+                        height: 57px;
+                        padding: 8px;
+                        position: relative;
+                        appearance: none;
+                        border-radius: 5px;
+                        option {
+                            font-size: 16px;
+                            background: #fff;
+                            position: absolute;
+                        }
+                        
+                    }
+                }
+                
+                // 排除第一個item
+                .formList:not(:nth-child(-n+1)){ 
+                    margin: 0 auto 20px;
+                }
+                
+                
+            }
+
         }
     }
 }
