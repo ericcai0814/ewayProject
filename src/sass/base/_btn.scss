@@ -6,14 +6,11 @@
     align-items: center;
     padding: 16px 20px;
     gap: 8px;
-
+    border: 0px;
     width: 200px;
     height: 57px;
-
-    /* Primary Color 2 */
-
     background: #B57556;
-    box-shadow: 0 0 20px rgba(250, 163, 163, 0.91);
+    box-shadow: 0px 4px 10px rgba(40, 35, 35, 0.35), 0px -4px 10px rgba(255, 255, 255, 0.9);
     border-radius: 50px;
 }
 
@@ -25,15 +22,14 @@
     height: 23px;
     font-style: normal;
     font-weight: 700;
+    border: 0px;
     font-size: 18px;
     line-height: 125%;
-    /* identical to box height, or 22px */
     letter-spacing: 0.2em;
     color: #E6FFB1;
 }
 
 .failure {
-    /* Auto layout */
     cursor: pointer;
     display: flex;
     flex-direction: row;
@@ -41,14 +37,12 @@
     align-items: center;
     padding: 0 20px;
     gap: 16px;
-
     position: absolute;
     width: 200px;
     height: 57px;
     left: 750px;
     top: 709px;
-
-    /* Primary Color 2 */
+    border: 0px;
     background: #B57556;
     box-shadow: 0 4px 10px rgba(40, 35, 35, 0.35), 0 -4px 10px rgba(255, 255, 255, 0.9);
     border-radius: 50px;

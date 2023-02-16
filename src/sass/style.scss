@@ -40,6 +40,7 @@ body {
 // ============ 公用END ============ //
 
 div.container{
+    margin: 0 auto;
     background-image: url(../img/baseColor.png);
     background-position: center center;
     background-size: cover;
@@ -99,6 +100,9 @@ div.container{
                 margin: 0 auto 32px;
                 order: 0;
                 flex-grow: 0;
+                button{
+                    box-shadow: none;
+                }
                 p{
                     color: #FFFFFF;
                     font-weight: 700;
@@ -110,28 +114,45 @@ div.container{
                 background-color: $Primary_Color_3;
                 display: flex;
                 flex-direction: column;
-                // align-items: center;
                 justify-content: space-between;
                 max-width: 808px;
                 padding: 24px 16px;
                 margin: 0 auto;
-                // gap: 24px;
-                // height: 322px;
                 border: 2px solid #B57556;
                 border-radius: 20px;
                 position: relative;
                 z-index: 999; // 為了要覆蓋白色海浪
+                @media all and (max-width: 850px) {
+                    width: 780px;
+                }
+                @media all and (max-width: 800px) {
+                    width: 720px;
+                }
+                @media all and (max-width: 728px) {
+                    width: 660px;
+                }
+                @media all and (max-width: 670px) {
+                    width: 500px;
+                }
+                @media all and (max-width: 414px) {
+                    width: 366px;
+                }
 
                 div.section{
                     max-width: 776px;
+                    @media all and (max-width: 414px) {
+                        width: 334px;
+                    }
                     &:first-child{
                         margin-bottom: 24.5px;
                     }
                     div.title{
                         position: relative;
                         margin-bottom: 16px;
-                        
+                        width: fit-content;
+                        margin: 0 auto;
                         p{
+                            color: $Primary_Color_1;
                             margin: 0 auto;
                             max-width: 92px;
                             text-align: center;
@@ -139,20 +160,36 @@ div.container{
                         img{
                             &:first-child{
                                 position: absolute;
-                                right: 315px;
+                                right: -33%;
                                 top: -10px;
                             
                             }
                             &:last-child{
                                 position: absolute;
-                                left: 308px;
+                                left: -40%;
                                 top: -10px;
                             }
                         }
                     }
+
+                    // FIXME 文本要剛好填滿父層
                     ol.orderList{
                         padding: 0px 16px;
                         list-style: decimal;
+                        color: $Primary_Color_1;
+                        // white-space: nowrap; // FIXME
+                        li{
+                            &:first-child span{
+                                font-weight: bold;
+                                vertical-align: baseline;
+                                text-decoration: underline;
+                            }
+                            &:last-child span{
+                                font-weight: bold;
+                                vertical-align: baseline;
+                                text-decoration: underline;
+                            }
+                        }
                     }
                 }
 
@@ -175,49 +212,133 @@ div.container{
                 div.supBubble{
                     img{
                         display: block;
+                        // sup
                         &:first-child{
                             position: absolute;
                             right: 0;
                             top: -10%;
                         }
+                        // 泡泡
                         &:nth-child(2){
-                            max-width: 20px;
+                            width: 20px;
                             position: absolute;
                             right: 4%;
                             top: -17%;
+                            animation: bubbleUp_1 2.5s linear infinite;
                         }
-                        &:last-child{
+                        // 泡泡
+                        &:nth-child(3){
                             position: absolute;
                             right: 2%;
                             top: -25%;
+                            animation: bubbleUp_2 2.3s linear infinite;
+                        }
+                        // 船槳
+                        &:last-child{
+                            position: absolute;
+                            right: -1%;
+                            top: -6%;
+                            animation: pandle_move 2.3s linear infinite;
                         }
                     }
                 }
             }
         }
-        div.theWaves{
-            display: block;
-            margin-top: 34px;
-            height: 109.54px;
-            max-width: 1400px;
-            background-repeat: repeat-x;
-            background-image: url(../img/theWaves.png);
+
+    // 船桨往上滑动的動畫 
+    @keyframes pandle_move {
+        0% {
+            transform: rotate(0deg);
+        }
+        50% {
+        transform: rotate(45deg);
+        }
+        0% {
+            transform: rotate(0deg);
+        }
+    }
+
+    
+    
+    // 泡泡往上飄動的動畫_1 
+    @keyframes bubbleUp_1 {
+        0% {
+            transform: translateY(0);
+        }
+        // 50% {
+        //     transform: translateY(-50px);
+        // }
+        100% {
+            transform: translateY(-20px);
+        }
+    }
+    // 泡泡往上飄動的動畫_2 
+    @keyframes bubbleUp_2 {
+        0% {
+            transform: translateY(0);
+        }
+        // 50% {
+        //     transform: translateY(-50px);
+        // }
+        100% {
+            transform: translateY(-20px);
+        }
+    }
+
+        // 海浪
+        div.theWavesContainer{
+            width: 100%;
+            overflow: hidden;
+            div.theWaves{
+                display: block;
+                margin-top: 34px;
+                height: 110px;
+                width: 200%;
+                background-repeat: repeat-x;
+                background-image: url(../img/theWaves.png);
+                animation: theWaves 10s linear infinite;
+                opacity: 0.8;
+            }
+        }
+    }
+
+    // 海浪動畫
+    @keyframes theWaves {
+        0% {
+            transform: translateX(0);
+        }
+        100% {
+            transform: translateX(-50%);
         }
     }
 
     article.main{
+        max-width: 1400px;
         background-color: #E2D9D3;
-        padding-top: 60px;
+        padding: 60px 0px 58px;
         div.form{
             border-radius: 16px;
             background-color: #fff;
             margin: 0px auto;
-            width: 808px;
+            width: 100%;
+            max-width: 808px;
             height: 575px;
             position: relative;
             border: 2px solid $Primary_Color_2;
             box-shadow: 0px 1px 20px rgba(73, 72, 72, 0.25);
             border-radius: 16px;
+            @media all and (max-width: 850px) {
+                width: 720px;
+            }
+            @media all and (max-width: 768px) {
+                width: 640px;
+            }
+            @media all and (max-width: 670px) {
+                width: 500px;
+            }
+            @media all and (max-width: 414px) {
+                width: 366px;
+            }
 
             div.title{
                 display: flex;
@@ -254,11 +375,12 @@ div.container{
             div.formCotent{
                 display: flex;
                 flex-direction: column;
+
                 div.formList{
                     margin: 40px auto 20px;
                     position: relative;
                     p{
-                        // width: 50px;
+                        width: fit-content;
                         font-size: 16px;
                         color: $Primary_Color_1;
                         position: relative;
@@ -269,24 +391,8 @@ div.container{
                             width: 5px;
                             position: absolute;
                             top: 0%;
-                            right: 1%;
+                            right: -5px;
                         }
-                    }
-                    // 控制 * 位置
-                    &:nth-child(1) p::after {
-                        left: 5.6%;
-                    }
-                    &:nth-child(2) p::after {
-                        left: 5.8%;
-                    }
-                    &:nth-child(3) p::after {
-                        left: 6.6%;
-                    }
-                    &:nth-child(4) p::after {
-                        left: 26%;
-                    }
-                    &:nth-child(5) p::after {
-                        left: 9.2%;
                     }
 
                     // 控制 dropDown.png
@@ -311,6 +417,18 @@ div.container{
                         -webkit-appearance: none; // 關掉預設樣式
                         appearance: none;
                         border-radius: 20px;
+                        @media all and (max-width: 850px) {
+                            width: 680px;
+                        }
+                        @media all and (max-width: 768px) {
+                            width: 600px;
+                        }
+                        @media all and (max-width: 670px) {
+                            width: 460px;
+                        }
+                        @media all and (max-width: 414px) {
+                            width: 326px;
+                        }
                         &::-webkit-calendar-picker-indicator { // 要寫JS
                             opacity: 0;
                         }
@@ -341,7 +459,175 @@ div.container{
                 
                 
             }
+        }
+        .main_btn{
+            display: contents;
+            box-shadow: 0px 4px 10px rgba(40, 35, 35, 0.35), 0px -4px 10px rgba(255, 255, 255, 0.9);
+            border-radius: 50px;
+            .default{
+                margin: 40px auto;
+                p{
+                    color: #FFFFFF;
+                    font-weight: 700;
+                    font-size: 18px;
+                    letter-spacing: 0.2em;
+                }
+            }
+        }
+        div.raffleArea{
+            background-image: url(../img/raffleSand.svg);
+            padding: 65px 0px 50px;
+            ul.raffleBlock{
+                display: flex;
+                justify-content: flex-start;
+                flex-wrap: wrap;
+                column-gap: 33px;
+                row-gap: 33px;
+                list-style: none;
+                margin: 0 auto;
+                max-width: 600px;
+                @media all and (max-width: 630px) {
+                    justify-content: center;
+                    column-gap: 65px;
+                    row-gap: 50px;
+                }
 
+                @media all and (max-width: 414px) {
+                    justify-content: center;
+                    column-gap: 16px;
+                }
+                li.raffleItem{
+                    width: 178px;
+                    height: 112px;
+                    background-color: #fff;
+                    box-shadow: 0px 8px 0px #EDEEF0;
+                    border-radius: 20px;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    align-items: center;
+                    position: relative;
+
+                    
+                    
+                    .certificate_ID{
+                        background-image: url(../img/certificateA.svg);
+                        display: flex;
+                        flex-direction: column;
+                        justify-content: center;
+                        align-items: center;
+                        position: absolute;
+                        top: 10%;
+                        left: 50%;
+                        transform: translate(-50%, -50%);
+                        p{
+                            font-weight: 700;
+                            color: #FFFFFF;
+                            font-size: 16.916px;
+                        }
+                    }
+
+                    .certificate_ID.typeA{
+                        background-image: url(../img/certificateA.svg);
+                        width: 66px;
+                        height: 78px;
+                        p{
+                            padding-bottom: 10px;
+                        }
+                    }
+                    .certificate_ID.typeB{
+                        background-image: url(../img/certificateD.svg);
+                        width: 65px;
+                        height: 65px;
+                    }
+                    
+
+                    p.raffleName{
+                        color: $Primary_Color_6;
+                        font-weight: 700;
+                        font-size: 18px;
+                        line-height: 125%;
+                        order: 1;
+                    }
+
+                    div.mark{
+                        margin: 0px 7px 25px auto;
+                        border: 1px solid $Primary_Color_6;
+                        padding: 3px 10px;
+                        background: #FAFAFA;
+                        border-radius: 50px;
+                        p{
+                            color: $Primary_Color_6;
+                            font-size: 12px;
+                            font-weight: 400;
+                            line-height: 140%;
+                        }
+                    }
+                    
+                    
+                }
+
+            }
+        }
+        .lighthouse_wrap{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+            margin: 40px auto 40px;
+            width: 274px;
+            .title{
+                display: flex;
+                .content{
+                    width: 238px;
+                    line-height: 166%;
+                    h6{
+                        font-weight: 700;
+                        font-size: 20px;
+                        text-align: center;
+                        &:first-child{
+                            color: $Primary_Color_2;
+                        }
+                        &:last-child{
+                            color: $Primary_Color_1;
+                        }
+                    }
+                    
+                }
+                img{
+                    display: block;
+                    width: 20px;
+                    height: 75px;
+                }
+            }
+            img{
+                display: block;
+                width: 56px;
+                height: 194px;
+            }
+        }
+    }
+    footer.shopMall_wrap{
+        margin-top: 40px;
+        background-color: $Primary_Color_1;
+        width: 100%;
+        border-radius: 50px 50px 0px 0px;
+        h6{
+            color: #FFFFFF;
+            font-style: normal;
+            font-weight: 700;
+            font-size: 20px;
+            line-height: 200%;
+            text-align: center;
+            letter-spacing: 0.2em;
+            margin-bottom: 24px;
+        }
+        img{
+            display: block;
+            margin: 0 auto;
+            width: 376px;
+            height: 493px;
+            padding-bottom: 40px;
         }
     }
 }

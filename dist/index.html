@@ -11,7 +11,7 @@
     <!-- h2 28px -->
     <!-- btn 18px -->
     <body>
-        <div class="container wrapper">
+        <div id="app" class="container wrapper">
             <div class="header">
                 <!-- 白色海浪 -->
                 <div class="whiteWaves">
@@ -58,11 +58,11 @@
                                 <img src="./img/cactus.png" alt="cactus">
                             </div>
                             <ol class="orderList">
-                                <li>Quisque sodales leo vitae vulputate auctor.</li>
+                                <li>Quisque sodales leo <span>vitae vulputate auctor.</span></li>
                                 <li>Proin ac justo ut nisl tincidunt imperdiet.Maecenas viverra libero a
                                     pellentesque blandit.</li>
                                 <li>Cras tristique tellus id leo bibendum, eu dapibus nisl accumsan.</li>
-                                <li>Donec ultrices sapien vitae leo venenatis ullamcorper.</li>
+                                <li>Donec ultrices sapien <span>vitae leo venenatis ullamcorper.</span></li>
                             </ol>
                         </div>
 
@@ -71,6 +71,7 @@
                             <img src="./img/sup.svg" alt="sup">
                             <img src="./img/Bubble.png" alt="Bubble">
                             <img src="./img/Bubble.png" alt="Bubble">
+                            <img src="./img/paddle.png" alt="paddle">
                         </div>
 
                         <!-- 獨木舟 & 煙火 -->
@@ -81,11 +82,12 @@
                     </div>
 
                 </div>
-
-                <div class="theWaves"></div>
+                <div class="theWavesContainer">
+                    <div class="theWaves"></div>
+                </div>
             </div>
 
-            <article class="main">
+            <article class="main wrapper">
 
                 <!-- 表單 -->
                 <div class="form">
@@ -115,7 +117,7 @@
                                 id="fromName"
                                 class="fromItem"
                                 placeholder="placeholder text"
-                                v-model.trim="member_info.addr"/>
+                                v-model.trim=""/>
                         </div>
                         <div class="formList">
                             <p>phone</p>
@@ -124,7 +126,7 @@
                                 id="fromName"
                                 class="fromItem"
                                 placeholder="placeholder text"
-                                v-model.trim="member_info.addr"/>
+                                v-model.trim=""/>
                         </div>
                         <div class="formList">
                             <p>Amount of consumption</p>
@@ -133,7 +135,7 @@
                                 id="fromName"
                                 class="fromItem"
                                 placeholder="placeholder text"
-                                v-model.trim="member_info.addr"/>
+                                v-model.trim=""/>
                         </div>
                         <div class="formList">
                             <p>payment</p>
@@ -151,24 +153,141 @@
                         </div>
                     </div>
                 </div>
-
                 <!-- 按鈕 -->
-                <div class="top_btn">
-                    <button class="default btn">
+                <div class="main_btn">
+                    <button class="default">
                         <p>FORM</p>
                     </button>
                 </div>
+                
+
+                <!-- 抽獎區 -->
+                <div class="raffleArea">
+                    <ul class="raffleBlock">
+                        <template 
+                            v-for="item in raffleDataA"
+                            :key="item.id"
+                        >
+                            <li class="raffleItem">
+                                <!-- TOP 3 -->
+                                <div class="certificate_ID typeA">
+                                    <p>{{item.id}}</p>
+                                </div>
+                                <p class="raffleName font18">{{item.name}}</p>
+                                <div class="mark">
+                                    <p>{{item.mark}}</p>
+                                </div>
+                            </li>
+                        </template>
+                        <template 
+                            v-for="item in raffleDataB"
+                            :key="item.id"
+                        >
+                            <li class="raffleItem">
+                                <div class="certificate_ID typeB">
+                                    <p style="padding-bottom: 2px;">{{item.id}}</p>
+                                </div>
+                                <p class="raffleName" style="color: #A0BCC8">{{item.name}}</p>
+                                <div class="mark" style="border: 1px solid #A0BCC8">
+                                    <p style="color: #A0BCC8">{{item.mark}}</p>
+                                </div>
+                            </li>
+                        </template>
+                    </ul>
+                </div>
+
+                <!-- lighthouse -->
+                <div class="lighthouse_wrap">
+                    <div class="title">
+                        <img src="./img/leftLine.png" alt="">
+                        <div class="content">
+                            <h6>
+                                13.32
+                            </h6>
+                            <h6>
+                                who seeks after it and<br>
+                                wants to have it
+                            </h6>
+                        </div>
+                        <img src="./img/rightLine.png" alt="">
+                    </div>
+                    <img src="./img/lighthouse.svg" alt="">
+                </div>
             </article>
 
+            <!-- 商城 -->
+
+            <footer class="shopMall_wrap">
+                <h6>
+                    Neque porro quisquam
+                    <br>
+                    est qui dolorem!
+                </h6>
+                <img src="./img/market.svg" alt="market">
+
+            </footer>
+
+
+
         </div>
-        <script src=""></script>
+        <script src="./js/vender/Vue/vue.global.js"></script>
         <script>
-            (function () {
-                // const input = document.getElementById('store'); const datalist =
-                // document.getElementById('storelist'); input.addEventListener('click', () => {
-                // datalist.style.display = 'block'; }); input.addEventListener('blur', () => {
-                // datalist.style.display = 'none'; });
-            })();
+            // (function () {
+            // })();
+            const app = Vue.createApp({
+
+                data() {
+                    return {
+                        raffleDataA: [
+                            {
+                                id: "A",
+                                mark: "ONE",
+                                name: "dehumidifier"
+                            },
+                            {
+                                id: "B",
+                                mark: "ONE",
+                                name: "range hood"
+                            },
+                            {
+                                id: "C",
+                                mark: "ONE",
+                                name: "vacuum cleaner"
+                            }
+                        ],
+
+                        raffleDataB: [
+                            {
+                                id: "D",
+                                mark: "ONE",
+                                name: "toaster"
+                            },
+                            {
+                                id: "E",
+                                mark: "ONE",
+                                name: "scale"
+                            },
+                            {
+                                id: "F",
+                                mark: "ONE",
+                                name: "straightening iron"
+                            },
+                            {
+                                id: "G",
+                                mark: "FIVE",
+                                name: "vacuum cleaner"
+                            },
+                            {
+                                id: "H",
+                                mark: "TEN",
+                                name: "rice cooker"
+                            }
+                        ]
+                    }
+                },
+
+            });
+            const vm = app.mount("#app");
         </script>
     </body>
 </html>
