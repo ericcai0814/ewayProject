@@ -29,9 +29,9 @@
 
                     <!-- 按鈕 -->
                     <div class="top_btn">
-                        <button class="default btn">
+                        <a class="default btn" href="#from">
                             <p>FORM</p>
-                        </button>
+                        </a>
                     </div>
 
                     <!-- 內文 -->
@@ -90,6 +90,7 @@
             <article class="main wrapper">
 
                 <!-- 表單 -->
+                <div id="from" style='margin-top:-100px; padding-top:100px'></div>
                 <div class="form">
                     <div class="title">
                         <p>FORM</p>
@@ -102,62 +103,109 @@
                             <input
                                 type="text"
                                 class="fromItem"
+                                :class="{ 'error': !checkOptions()}"
                                 list="storelist"
-                                placeholder="placeholder text">
-                            <datalist id="storelist" class="chooseItem">
-                                <option value="Option1">store1</option>
-                                <option value="Option2">store2</option>
-                                <option value="Option3">store3</option>
+                                placeholder="placeholder text"
+                                v-model="inputData.selectedStore"
+                                @input="checkOptions()"
+                                required
+                                >
+                            <span 
+                                class="error_Msg"
+                                v-if="!checkOptions()" 
+                            >請輸入下拉列表中的選項</span>
+                            <datalist   id="storelist" 
+                                        class="chooseItem"
+                                        >
+                                <option v-for="(option,index) in this.storeOptions" 
+                                        :value="option" 
+                                        :key="index"
+                                        >
+                                    </option>
                             </datalist>
                         </div>
+
+
                         <div class="formList">
                             <p>name</p>
                             <input
                                 type="text"
                                 id="fromName"
                                 class="fromItem"
+                                :class="{ 'error': !checkName() }"
                                 placeholder="placeholder text"
-                                v-model.trim=""/>
+                                v-model.trim="inputData.name" 
+                                />
+                            <span v-if="!checkName()" class="error_Msg">請輸入英文或中文名，不得為空</span>
                         </div>
                         <div class="formList">
                             <p>phone</p>
                             <input
-                                type="text"
-                                id="fromName"
+                                type="tel"
+                                id="fromID"
                                 class="fromItem"
+                                :class="{ 'error': !checkPhone()}"
                                 placeholder="placeholder text"
-                                v-model.trim=""/>
+                                v-model.trim="inputData.phone"
+                                maxlength="10"
+                                />
+                                <span v-if="!checkPhone()" class="error_Msg">請輸入手機號碼</span>
                         </div>
                         <div class="formList">
                             <p>Amount of consumption</p>
                             <input
-                                type="text"
-                                id="fromName"
+                                type="number"
+                                id="fromAmount"
                                 class="fromItem"
                                 placeholder="placeholder text"
-                                v-model.trim=""/>
+                                v-model.trim="inputData.amount"/>
+                            <span v-if="!checkAmount()" class="error_Msg">請輸入正確格式</span>
                         </div>
+                        
                         <div class="formList">
                             <p>payment</p>
                             <img src="./img/dropDown.png" alt="dropDown">
-                            <input
-                                type="text"
-                                class="fromItem"
-                                list="storelist"
-                                placeholder="placeholder text">
-                            <datalist id="storelist" class="chooseItem">
-                                <option value="Option1">store1</option>
-                                <option value="Option2">store2</option>
-                                <option value="Option3">store3</option>
-                            </datalist>
+                            <select 
+                                    name="paymentList"
+                                    type="text"
+                                    class="fromItem"
+                                    list="storelist"
+                                    placeholder="placeholder text">
+                                    >
+                            </select>
+                            <option class="chooseItem"
+                                    v-for="(option,index) in this.options" 
+                                    :value="option" 
+                                    :key="index"
+                            ></option>
                         </div>
                     </div>
                 </div>
                 <!-- 按鈕 -->
                 <div class="main_btn">
-                    <button class="default">
+                    <button 
+                            class="default"
+                            @click="submitForm"
+                            >
                         <p>submit</p>
                     </button>
+                </div>
+
+                <!-- 成功按鈕 -->
+                <div class="main_btn">
+                    <button class="success">
+                        <img src="./img/success.png" alt="success">
+                        <p>success</p>
+                    </button>
+                </div>
+
+                <!-- 失敗按鈕 -->
+                <div class="main_btn">
+                    <button class="failure">
+                        <img src="./img/failure.svg" alt="success">
+                        <p>failure</p>
+                    </button>
+                    <p>This person does not exist</p>
                 </div>
                 
 
@@ -231,6 +279,7 @@
 
         </div>
         <script src="./js/vender/Vue/vue.global.js"></script>
+        <script src="./js/vender/isJS/is.min.js"></script>
         <script>
             // (function () {
             // })();
@@ -282,19 +331,91 @@
                                 mark: "TEN",
                                 name: "rice cooker"
                             }
-                        ]
+                        ],
+                        storeOptions: [
+                            "store1",
+                            "store2",
+                            "store3"
+                        ],
+                        
+                        inputData: {
+                            selectedStore: "",
+                            name: "",
+                            phone: "",
+                            amount: "",
+                        }
+                        
                     }
                 },
                 computed: {
-                    
                 },
                 mounted() {
                     
                 },
                 methods: {
-                    fromBtnAnimation(){
+                    // ===== 驗證格式 ===== // 
 
+                    // FIXME
+                    // 1、store
+                    checkOptions() {
+                        const inputValue = this.inputData.selectedStore.trim();
+                        // console.log(inputValue);
+                        for (let i = 0; i < this.storeOptions.length; i++) {
+                            const el = this.storeOptions[i];
+                            // console.log(el);
+                            if (el.includes(String(inputValue))) {
+                                // console.log("正確");
+                            }else{
+                                inputValue = "";
+                            }
+                            // if (el.includes(inputValue)) {
+                            // }       
+                            // console.log(el.includes(inputValue));
+                        }
+                        
                     },
+
+                    // 2、name
+                    nameRule(nameStr){
+                        let nameRule =  new RegExp('^[\u4e00-\u9fa5]+$|^[a-zA-Z\s]+$');
+                        return nameRule.test(nameStr);
+                    },
+
+                    checkName(){
+                        // 姓名驗證 (中文與英文)
+                        if(this.inputData.name =="")return false
+                        console.log(this.nameRule(this.inputData.name));
+                        return this.nameRule(this.inputData.name);
+                    },
+
+                    // 3、phone
+                    phoneRule(str){
+                        let phoneRule =  new RegExp("^09\\d{8}$");
+                        return phoneRule.test(str);
+                    },
+                    checkPhone(){
+                        if(this.inputData.phone =="")return false;
+                        console.log(this.phoneRule(this.inputData.phone));
+                        return this.phoneRule(this.inputData.phone);
+                    },
+
+                    // 4、sum
+                    checkAmount(str) {
+                        let addrRule = new RegExp('^[\u4e00-\u9fa5A-Za-z0-9]+[\u4e00-\u9fa5A-Za-z0-9\s]+[\u4e00-\u9fa5A-Za-z0-9]$')
+                        return addrRule.test(str);
+                    },
+
+                    // 5、payment
+
+
+                    // submit
+                    submitForm() {
+                        if (this.inputData.selectedStore === "") {
+                            alert("請選擇一個店家");
+                        }
+                    },
+
+
                 },
 
             });

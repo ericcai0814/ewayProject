@@ -26,6 +26,7 @@ body {
     font-size: 16px;
     letter-spacing: 1px;
     box-sizing: border-box;
+    scroll-behavior: smooth;
 }
 .fulid_wrapper {
     margin: 0 auto;
@@ -99,8 +100,9 @@ div.container {
                 margin: 0 auto 32px;
                 order: 0;
                 flex-grow: 0;
-                button {
+                a {
                     box-shadow: none;
+                    text-decoration: none;
                 }
                 p {
                     color: #FFFFFF;
@@ -355,6 +357,13 @@ div.container {
                         top: 47%;
                         z-index: 1;
                     }
+                    .error_Msg{
+                        color: red;
+                        position: absolute;
+                        font-size: 12px;
+                        left: 0;
+                        bottom: -25%;
+                    }
 
                     // 控制 input
                     .fromItem {
@@ -384,7 +393,13 @@ div.container {
                             // 要寫JS
                             opacity: 0;
                         }
+
+                        // 格式錯誤
+                        &.error {
+                            border: 3px solid #E06D6D;
+                        }
                     }
+                    
                     // 控制 input dataList
                     .chooseItem datalist {
                         background: #fff;
@@ -423,6 +438,17 @@ div.container {
                     font-size: 18px;
                     letter-spacing: 0.2em;
                 }
+            }
+            button + p{
+            width: 202px;
+            height: 21px;
+            font-style: normal;
+            font-weight: 400;
+            font-size: 14px;
+            line-height: 150%;
+            text-align: center;
+            color: #E06D6D;
+            margin: 0 auto;
             }
         }
         div.raffleArea {
