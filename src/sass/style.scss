@@ -27,6 +27,7 @@ body {
     letter-spacing: 1px;
     box-sizing: border-box;
     scroll-behavior: smooth;
+    // overflow: hidden;
 }
 .fulid_wrapper {
     margin: 0 auto;
@@ -48,8 +49,10 @@ div.container {
         position: relative;
         z-index: 2;
         div.whiteWaves {
-
+            overflow: hidden;
             img {
+                display: block;
+                width: 100%;
                 &:first-child {
                     z-index: 1;
                     position: absolute;
