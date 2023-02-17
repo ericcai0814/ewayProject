@@ -135,22 +135,36 @@
                                 :class="{ 'error': !checkName() }"
                                 placeholder="placeholder text"
                                 v-model.trim="inputData.name" 
+                                required
                                 />
                             <span v-if="!checkName()" class="error_Msg">請輸入英文或中文名，不得為空</span>
                         </div>
+
+                        <!-- compalate -->
+                        <!-- 手機格式 -->
+                        <!-- 數字 -->
+                        <!-- 10位數 -->
+                        <!-- 必填 -->
                         <div class="formList">
                             <p>phone</p>
                             <input
                                 type="tel"
                                 id="fromID"
                                 class="fromItem"
-                                :class="{ 'error': !checkPhone()}"
+                                :class="{ 'error': !checkPhone}"
                                 placeholder="placeholder text"
                                 v-model.trim="inputData.phone"
                                 maxlength="10"
+                                required
                                 />
-                                <span v-if="!checkPhone()" class="error_Msg">請輸入手機號碼</span>
+                                <span v-if="!checkPhone" class="error_Msg">請輸入手機號碼</span>
                         </div>
+
+
+                        <!-- compalate -->
+                        <!-- 數字 -->
+                        <!-- 大於0 -->
+                        <!-- 必填 -->
                         <div class="formList">
                             <p>Amount of consumption</p>
                             <input
@@ -158,10 +172,14 @@
                                 id="fromAmount"
                                 class="fromItem"
                                 placeholder="placeholder text"
-                                v-model.trim="inputData.amount"/>
+                                v-model.trim="inputData.amount"
+                                required
+                                />
                             <span v-if="!checkAmount()" class="error_Msg">請輸入正確格式</span>
                         </div>
                         
+
+                        <!-- 必填 -->
                         <div class="formList">
                             <p>payment</p>
                             <img src="./img/dropDown.png" alt="dropDown">
@@ -170,7 +188,8 @@
                                     type="text"
                                     class="fromItem"
                                     list="storelist"
-                                    placeholder="placeholder text">
+                                    placeholder="placeholder text"
+                                    required
                                     >
                             </select>
                             <option class="chooseItem"
@@ -281,8 +300,18 @@
         <script src="./js/vender/Vue/vue.global.js"></script>
         <script src="./js/vender/isJS/is.min.js"></script>
         <script>
-            // (function () {
-            // })();
+            (function () {
+                let anchor = document.querySelector('a[href="#from"]')
+                anchor.addEventListener('click', scrollToForm);
+                function scrollToForm(){
+                    let target = document.getElementById('from')
+                    const formPosition = target.getBoundingClientRect().top + window.scrollY;
+                    window.scrollTo({
+                        top: formPosition,
+                        behavior: 'smooth'
+                    })
+                };
+            })();
             const app = Vue.createApp({
 
                 data() {

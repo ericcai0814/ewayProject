@@ -27,7 +27,7 @@ body {
     letter-spacing: 1px;
     box-sizing: border-box;
     scroll-behavior: smooth;
-    // overflow: hidden;
+    transition: 1s;
 }
 .fulid_wrapper {
     margin: 0 auto;
@@ -35,7 +35,7 @@ body {
 }
 .wrapper {
     margin: 0 auto;
-    max-width: 1400px;
+    max-width: 1920px;
 }
 
 // ============ 公用END ============ //
@@ -267,7 +267,7 @@ div.container {
     }
 
     article.main {
-        max-width: 1400px;
+        max-width: 1920px;
         background-color: #E2D9D3;
         padding: 60px 0 58px;
         div.form {
