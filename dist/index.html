@@ -29,9 +29,9 @@
 
                     <!-- 按鈕 -->
                     <div class="top_btn">
-                        <a class="default btn" href="#from">
+                        <button class="default btn" @click="fromMove">
                             <p>FORM</p>
-                        </a>
+                        </button>
                     </div>
 
                     <!-- 內文 -->
@@ -101,43 +101,43 @@
                             <p>store</p>
                             <img src="./img/dropDown.png" alt="dropDown">
                             <input
+                                id="store"
                                 type="text"
                                 class="fromItem"
-                                :class="{ 'error': !checkOptions()}"
                                 list="storelist"
                                 placeholder="placeholder text"
                                 v-model="inputData.selectedStore"
-                                @input="checkOptions()"
+                                @input="checkOptions"
                                 required
                                 >
                             <span 
-                                class="error_Msg"
-                                v-if="!checkOptions()" 
-                            >請輸入下拉列表中的選項</span>
-                            <datalist   id="storelist" 
-                                        class="chooseItem"
-                                        >
-                                <option v-for="(option,index) in this.storeOptions" 
-                                        :value="option" 
-                                        :key="index"
-                                        >
-                                    </option>
+                                class="error_Msg none" 
+                            >required</span>
+                            <datalist   
+                                id="storelist" 
+                                class="chooseItem"
+                                >
+                                <option value="store1">store1</option>
+                                <option value="store2">store2</option>
+                                <option value="store3">store3</option>
                             </datalist>
                         </div>
 
 
+                        
                         <div class="formList">
                             <p>name</p>
                             <input
                                 type="text"
                                 id="fromName"
                                 class="fromItem"
-                                :class="{ 'error': !checkName() }"
                                 placeholder="placeholder text"
                                 v-model.trim="inputData.name" 
+                                @onkeypress="unNumber($event)"
+                                @input="checkName"
                                 required
                                 />
-                            <span v-if="!checkName()" class="error_Msg">請輸入英文或中文名，不得為空</span>
+                            <span class="error_Msg none">required</span>
                         </div>
 
                         <!-- compalate -->
@@ -149,15 +149,17 @@
                             <p>phone</p>
                             <input
                                 type="tel"
-                                id="fromID"
+                                id="fromPhone"
                                 class="fromItem"
-                                :class="{ 'error': !checkPhone}"
                                 placeholder="placeholder text"
                                 v-model.trim="inputData.phone"
                                 maxlength="10"
                                 required
+                                @keydown="unPhone($event)"
+                                @input="checkPhone"
                                 />
-                                <span v-if="!checkPhone" class="error_Msg">請輸入手機號碼</span>
+                                <span class="error_Msg none">required</span>
+                                <span class="error_Msg none">wrong format</span>
                         </div>
 
 
@@ -173,9 +175,12 @@
                                 class="fromItem"
                                 placeholder="placeholder text"
                                 v-model.trim="inputData.amount"
+                                @keydown="onlyNumber($event)"
+                                @input="checkAmount"
                                 required
                                 />
-                            <span v-if="!checkAmount()" class="error_Msg">請輸入正確格式</span>
+                            <span class="error_Msg none">required</span>
+                            <span class="error_Msg none">wrong format</span>
                         </div>
                         
 
@@ -184,24 +189,21 @@
                             <p>payment</p>
                             <img src="./img/dropDown.png" alt="dropDown">
                             <select 
-                                    name="paymentList"
-                                    type="text"
-                                    class="fromItem"
-                                    list="storelist"
-                                    placeholder="placeholder text"
-                                    required
-                                    >
+                                id="fromPayment"
+                                class="fromItem"
+                                v-model="inputData.payment" 
+                                @input="checkPayment"
+                                >
+                                <option value="digital payment" selected>digital payment</option>
+                                <option value="ATM">ATM</option>
                             </select>
-                            <option class="chooseItem"
-                                    v-for="(option,index) in this.options" 
-                                    :value="option" 
-                                    :key="index"
-                            ></option>
+                            <span class="error_Msg none">required</span>
+                            <span class="error_Msg none">wrong format</span>
                         </div>
                     </div>
                 </div>
                 <!-- 按鈕 -->
-                <div class="main_btn">
+                <div class="main_btn" id="submit">
                     <button 
                             class="default"
                             @click="submitForm"
@@ -211,16 +213,20 @@
                 </div>
 
                 <!-- 成功按鈕 -->
-                <div class="main_btn">
-                    <button class="success">
+                <div class="main_btn none" id="success">
+                    <button 
+                            class="success" 
+                            @click="submitForm">
                         <img src="./img/success.png" alt="success">
                         <p>success</p>
                     </button>
                 </div>
 
                 <!-- 失敗按鈕 -->
-                <div class="main_btn">
-                    <button class="failure">
+                <div class="main_btn none" id="failure">
+                    <button 
+                            class="failure"
+                            @click="submitForm">
                         <img src="./img/failure.svg" alt="success">
                         <p>failure</p>
                     </button>
@@ -300,18 +306,7 @@
         <script src="./js/vender/Vue/vue.global.js"></script>
         <script src="./js/vender/isJS/is.min.js"></script>
         <script>
-            (function () {
-                let anchor = document.querySelector('a[href="#from"]')
-                anchor.addEventListener('click', scrollToForm);
-                function scrollToForm(){
-                    let target = document.getElementById('from')
-                    const formPosition = target.getBoundingClientRect().top + window.scrollY;
-                    window.scrollTo({
-                        top: formPosition,
-                        behavior: 'smooth'
-                    })
-                };
-            })();
+                    
             const app = Vue.createApp({
 
                 data() {
@@ -361,19 +356,21 @@
                                 name: "rice cooker"
                             }
                         ],
-                        storeOptions: [
-                            "store1",
-                            "store2",
-                            "store3"
-                        ],
                         
                         inputData: {
                             selectedStore: "",
                             name: "",
                             phone: "",
                             amount: "",
+                            payment:"digital payment"
+                        },
+                        submitData: {
+                            selectedStore: false,
+                            name: false,
+                            phone: false,
+                            amount: false,
+                            payment: true
                         }
-                        
                     }
                 },
                 computed: {
@@ -382,26 +379,37 @@
                     
                 },
                 methods: {
-                    // ===== 驗證格式 ===== // 
 
-                    // FIXME
+                    // from錨點
+                    fromMove(){
+                        let target = document.getElementById('from');
+                        const formPosition = target.getBoundingClientRect().top + window.pageYOffset;
+                        window.scrollTo({
+                            top: formPosition,
+                            behavior: 'smooth'
+                        })
+                    },
+                    // ===== 驗證格式 ===== // 
                     // 1、store
-                    checkOptions() {
-                        const inputValue = this.inputData.selectedStore.trim();
-                        // console.log(inputValue);
-                        for (let i = 0; i < this.storeOptions.length; i++) {
-                            const el = this.storeOptions[i];
-                            // console.log(el);
-                            if (el.includes(String(inputValue))) {
-                                // console.log("正確");
-                            }else{
-                                inputValue = "";
-                            }
-                            // if (el.includes(inputValue)) {
-                            // }       
-                            // console.log(el.includes(inputValue));
+                    checkOptions(){
+                        let store = document.getElementById('store');
+                        if(
+                            this.inputData.selectedStore == "store1" ||
+                            this.inputData.selectedStore == "store2" || 
+                            this.inputData.selectedStore == "store3"){
+                            // 驗證通過
+                            store.classList.remove('error');
+                            
+                            store.nextElementSibling.classList.add('none');
+                            this.submitData.selectedStore = true;
+                            console.log(true);
+                        }else{
+                            // 驗證未通過
+                            store.classList.add('error');
+                            store.nextElementSibling.classList.remove('none');
+                            this.submitData.selectedStore = false;
+                            console.log(false);
                         }
-                        
                     },
 
                     // 2、name
@@ -410,11 +418,31 @@
                         return nameRule.test(nameStr);
                     },
 
+                    // 不能打數字
+                    unNumber(e){
+                        // console.log(e.which);
+                        if((e.which >= 48 && e.which <= 57) || (e.which > 8 && e.which <=9) || (e.which >= 96 && e.which < 105)){
+                            e.preventDefault();
+                        }
+                    },
+
+                    // 
                     checkName(){
-                        // 姓名驗證 (中文與英文)
-                        if(this.inputData.name =="")return false
-                        console.log(this.nameRule(this.inputData.name));
-                        return this.nameRule(this.inputData.name);
+
+                        let fromName = document.getElementById('fromName');
+                        if(this.inputData.name == ""){
+                            // 錯誤
+                            fromName.classList.add('error');
+                            fromName.nextElementSibling.classList.remove('none');
+                            this.submitData.name = false;
+                            console.log(false);
+                        }else if(this.nameRule(this.inputData.name)){
+                            // 正確
+                            fromName.classList.remove('error');
+                            fromName.nextElementSibling.classList.add('none');
+                            this.submitData.name = true;
+                            console.log(true);
+                        }
                     },
 
                     // 3、phone
@@ -422,26 +450,138 @@
                         let phoneRule =  new RegExp("^09\\d{8}$");
                         return phoneRule.test(str);
                     },
+
+                    // 不能打數字以外
+                    unPhone(e){
+                        // console.log(e.which);
+                        if( (e.which >= 37 && e.which <= 40) || (e.which >= 48 && e.which <= 57) || (e.which >= 8 && e.which <=9) || (e.which >= 96 && e.which < 105)){
+
+                        }else{
+                            e.preventDefault();
+                        }
+                    },
                     checkPhone(){
-                        if(this.inputData.phone =="")return false;
-                        console.log(this.phoneRule(this.inputData.phone));
-                        return this.phoneRule(this.inputData.phone);
+                        let phone = document.getElementById('fromPhone');
+                        if(this.inputData.phone.length !== 10){
+                            // 字數少於10錯誤
+                            phone.classList.add('error');
+                            phone.nextElementSibling.classList.add('none');
+                            phone.nextElementSibling.nextElementSibling.classList.remove('none');
+                            this.submitData.phone = false;
+                            console.log(false);
+
+                        }else if(this.inputData.phone !== "" && !this.phoneRule(this.inputData.phone)){
+                            // 格式錯誤
+                            console.log("111");
+                            phone.classList.add('error');
+                            phone.nextElementSibling.classList.add('none');
+                            phone.nextElementSibling.nextElementSibling.classList.remove('none');
+                            this.submitData.phone = false;
+                            console.log(false);
+                        }else{
+                            // 輸入正確
+                            phone.classList.remove('error');
+                            phone.nextElementSibling.classList.add('none');
+                            phone.nextElementSibling.nextElementSibling.classList.add('none');
+                            this.submitData.phone = true;
+                            console.log(true);
+                        }
+                        if(this.inputData.phone == ""){
+                            // 空值錯誤
+                            phone.classList.add('error');
+                            phone.nextElementSibling.classList.remove('none');
+                            phone.nextElementSibling.nextElementSibling.classList.add('none');
+                            this.submitData.phone = false;
+                            console.log(false);
+                        }
                     },
 
-                    // 4、sum
-                    checkAmount(str) {
-                        let addrRule = new RegExp('^[\u4e00-\u9fa5A-Za-z0-9]+[\u4e00-\u9fa5A-Za-z0-9\s]+[\u4e00-\u9fa5A-Za-z0-9]$')
-                        return addrRule.test(str);
+                    // 4、amount
+
+                    // 不能打數字以外
+                    onlyNumber(e){
+                        if( (e.which >= 37 && e.which <= 40) || (e.which >= 48 && e.which <= 57) || (e.which >= 8 && e.which <=9) || (e.which >= 96 && e.which < 105)){
+
+                        }else{
+                            e.preventDefault();
+                        }
+                    },
+                    
+
+                    checkAmount() {
+                        let amount = document.getElementById('fromAmount');
+                        if(this.inputData.amount.length == 0 || this.inputData.amount < 0){
+                            // 數字小於 或 等於 0 錯誤
+                            amount.classList.add('error');
+                            amount.nextElementSibling.classList.remove('none');
+                            this.submitData.amount = false;
+                            console.log(false);
+                        }else{
+                            // 驗證通過
+                            amount.classList.remove('error');
+                            amount.nextElementSibling.classList.add('none');
+                            this.submitData.amount = true;
+                            console.log(true);
+                        }
                     },
 
                     // 5、payment
+                    checkPayment(){
+                        let payment = document.getElementById('fromPayment');
+                        if( this.inputData.payment == "digital payment" || this.inputData.payment == "ATM"){
+                            // 正確
+                            payment.classList.remove('error');
+                            payment.nextElementSibling.classList.add('none');
+                            this.submitData.payment = true;
+                            console.log(true);
+                        }else{
+                            // 錯誤
+                            payment.classList.add('error');
+                            payment.nextElementSibling.classList.remove('none');
+                            this.submitData.payment = false;
+                            console.log(false);
+                        }
+                    },
 
 
                     // submit
                     submitForm() {
-                        if (this.inputData.selectedStore === "") {
-                            alert("請選擇一個店家");
-                        }
+
+                        let submit = document.getElementById('submit');
+                        let success = document.getElementById('success');
+                        let failure = document.getElementById('failure');
+
+                        // console.log(submit);
+                        // console.log(success);
+                        // console.log(failure);
+                        // console.log(`checkOptions ${this.checkOptions}`);
+                        // console.log(`checkName ${this.checkName}`);
+                        // console.log(`checkPhone ${this.checkPhone}`);
+                        // console.log(`checkAmount ${this.checkAmount}`);
+                        // console.log(`checkPayment ${this.checkPayment}`);
+
+                        this.checkOptions();
+                        this.checkName();
+                        this.checkPhone();
+                        this.checkAmount();
+                        this.checkPayment();
+
+                        if(
+                            this.submitData.selectedStore 
+                            && this.submitData.name 
+                            && this.submitData.phone 
+                            && this.submitData.amount 
+                            && this.submitData.payment){
+                            console.log("驗證通過");
+                            success.classList.remove('none');
+                            submit.classList.add('none');
+                            failure.classList.add('none');
+                        }else{
+                            console.log("驗證未通過");
+                            submit.classList.add('none');
+                            success.classList.add('none');
+                            failure.classList.remove('none');
+                        };
                     },
 
 
@@ -451,4 +591,4 @@
             const vm = app.mount("#app");
         </script>
     </body>
-</html>
+</html>.

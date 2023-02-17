@@ -103,7 +103,7 @@ div.container {
                 margin: 0 auto 32px;
                 order: 0;
                 flex-grow: 0;
-                a {
+                button {
                     box-shadow: none;
                     text-decoration: none;
                 }
@@ -259,7 +259,7 @@ div.container {
                 height: 110px;
                 width: 200%;
                 background-repeat: repeat-x;
-                background-image: url("../img/theWaves.png");
+                background-image: url("../img/waves.png");
                 animation: theWaves 10s linear infinite;
                 opacity: 0.8;
             }
@@ -367,12 +367,14 @@ div.container {
                         left: 0;
                         bottom: -25%;
                     }
+                    .error_Msg.none{
+                        display: none;
+                    }
 
                     // 控制 input
                     .fromItem {
                         border: 1px solid $Primary_Color_1;
                         background-color: #fff;
-                        color: #BDBDBD;
                         width: 768px;
                         height: 57px;
                         padding: 8px;
@@ -404,7 +406,8 @@ div.container {
                     }
                     
                     // 控制 input dataList
-                    .chooseItem datalist {
+                    datalist.chooseItem,
+                    select.chooseItem{
                         background: #fff;
                         color: #BDBDBD;
                         width: 768px;
@@ -417,9 +420,11 @@ div.container {
                             font-size: 16px;
                             background: #fff;
                             position: absolute;
+                            color: #BDBDBD;
                         }
 
                     }
+                    
                 }
 
                 // 排除第一個item
@@ -433,13 +438,26 @@ div.container {
             display: contents;
             box-shadow: 0 4px 10px rgba(40, 35, 35, 0.35), 0 -4px 10px rgba(255, 255, 255, 0.9);
             border-radius: 50px;
-            .default {
-                margin: 40px auto;
+            
+            .default,
+            .success,
+            .failure {
+                margin: 40px auto 0px;
                 p {
                     color: #FFFFFF;
                     font-weight: 700;
                     font-size: 18px;
                     letter-spacing: 0.2em;
+                }
+            }
+            .success{
+                p{
+                    color: #E6FFB1;
+                }
+            }
+            .failure{
+                p{
+                    color: #FFE3E3;
                 }
             }
             button + p{
@@ -454,7 +472,11 @@ div.container {
             margin: 0 auto;
             }
         }
+        .main_btn.none{
+            display: none;
+        }
         div.raffleArea {
+            margin-top: 40px;
             background-image: url("../img/raffleSand.svg");
             padding: 65px 0 50px;
             ul.raffleBlock {
