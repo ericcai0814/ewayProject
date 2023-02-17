@@ -197,22 +197,7 @@ div.container {
                     }
                 }
 
-                div.supFireworks {
-                    img {
-                        display: block;
-                        &:first-child {
-                            position: absolute;
-                            left: 3%;
-                            bottom: -17%;
-                        }
-                        &:last-child {
-                            position: absolute;
-                            left: 0;
-                            bottom: -18%;
-                            animation: enlargeAndFadeOut 1.5s forwards infinite;
-                        }
-                    }
-                }
+                
                 div.supBubble {
                     img {
                         display: block;
@@ -242,10 +227,33 @@ div.container {
                             position: absolute;
                             right: -1%;
                             top: -6%;
-                            animation: pandle_move 2.3s linear infinite;
+                            animation: pandle_move_1 2.3s linear infinite;
                         }
                     }
                 }
+                div.supFireworks {
+                    img {
+                        display: block;
+                        &:first-child {
+                            position: absolute;
+                            left: 3%;
+                            bottom: -17%;
+                        }
+                        &:nth-child(2) {
+                            position: absolute;
+                            left: 0;
+                            bottom: -18%;
+                            animation: enlargeAndFadeOut 1.5s forwards infinite;
+                        }
+                        &:last-child{
+                            position: absolute;
+                            left: 1%;
+                            bottom: -17%;
+                            transform: rotate(110deg);
+                            animation: pandle_move_2 2.3s linear infinite;
+                        }
+                    }
+              }
             }
         }
 
@@ -646,8 +654,8 @@ div.container {
     }
 }
 
-// 船桨往上滑动的動畫 
-@keyframes pandle_move {
+// 船桨往上滑动的動畫_1
+@keyframes pandle_move_1 {
     0% {
         transform: rotate(0deg);
     }
@@ -656,6 +664,19 @@ div.container {
     }
     0% {
         transform: rotate(0deg);
+    }
+}
+
+// 船桨往上滑动的動畫_2
+@keyframes pandle_move_2 {
+    0% {
+        transform: rotate(110deg);
+    }
+    50% {
+        transform: rotate(80deg);
+    }
+    0% {
+        transform: rotate(110deg);
     }
 }
 
