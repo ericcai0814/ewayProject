@@ -456,7 +456,7 @@ div.container {
             .default,
             .success,
             .failure {
-                margin: 40px auto 0px;
+                margin: 40px auto 21px;
                 p {
                     color: #FFFFFF;
                     font-weight: 700;
@@ -470,6 +470,7 @@ div.container {
                 }
             }
             .failure{
+                margin-bottom: 0px;
                 p{
                     color: #FFE3E3;
                 }
