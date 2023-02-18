@@ -108,8 +108,8 @@
                                 list="storelist"
                                 placeholder="placeholder text"
                                 v-model="inputData.selectedStore"
-                                @input="checkOptions"
-                                @keydown="noResult($event)"
+                                @blur="checkOptions"
+                                @input="required"
                                 required
                             >
                             <!-- 必填提示 -->
@@ -403,11 +403,7 @@
                             // 輸入正確
                             this.inputData.selectedStore == "store1" ||
                             this.inputData.selectedStore == "store2" || 
-                            this.inputData.selectedStore == "store3" ||
-                            ((e.which >= 82 && e.which <= 84) ||
-                            (e.which >= 50 && e.which <= 51) ||
-                            e.which == 49 || e.which == 69 ||
-                            e.which == 79)
+                            this.inputData.selectedStore == "store3" 
                             ){
                             
                             store.classList.remove('error');
@@ -416,7 +412,19 @@
                             this.submitData.selectedStore = true;
                             console.log("輸入正確");
                         }
-                        
+                        else if(
+                            !(this.inputData.selectedStore == "store1" ||
+                            this.inputData.selectedStore == "store2" || 
+                            this.inputData.selectedStore == "store3" )
+                        ){
+                            store.classList.add('error');
+                            store.nextElementSibling.classList.add('none');
+                            store.nextElementSibling.nextElementSibling.classList.remove('none');
+                            this.submitData.selectedStore = false;
+                        }
+                    },
+
+                    required (){
                         // 空值輸入 required提示
                         if(this.inputData.selectedStore == ""){
                             store.classList.add('error');
@@ -424,22 +432,6 @@
                             store.nextElementSibling.nextElementSibling.classList.add('none');
                             this.submitData.name = false;
                             console.log("空值錯誤");
-                        }
-                    },
-                    noResult(e){
-                        let store = document.getElementById('store');
-                        if(
-                            !((e.which >= 82 && e.which <= 84) ||
-                            (e.which >= 50 && e.which <= 51) ||
-                            e.which == 49 || e.which == 69 ||
-                            e.which == 79 || e.which == 8) && e.target.value.length >= 0 
-                        ){
-                            // 錯誤
-                            store.classList.add('error');
-                            store.nextElementSibling.classList.add('none');
-                            store.nextElementSibling.nextElementSibling.classList.remove('none');
-                            this.submitData.selectedStore = false;
-                            console.log("noResult");
                         }
                     },
 
@@ -496,11 +488,12 @@
                         let fromPhone = document.getElementById('fromPhone');
                         // console.log(e.which);
                         if( 
-                        (e.which >= 37 && e.which <= 40) || 
+                        ((e.which >= 37 && e.which <= 40) || 
                         (e.which >= 48 && e.which <= 57) || 
                         (e.which >= 96 && e.which < 105) ||
-                        e.which ==9
+                        e.which == 9) && fromPhone.value.length !== 10
                         ){
+                            console.log(fromPhone.value.length);
                             fromPhone.classList.add('error');
                             fromPhone.nextElementSibling.classList.add('none');
                             fromPhone.nextElementSibling.nextElementSibling.classList.remove('none');
@@ -508,8 +501,8 @@
                             console.log("數字錯誤");
                         }
                         // 回車鍵使長度 == 0 提示 required
-                        else if(e.target.value.length == 0  || e.target.value.length == 1){
-                            console.log(e.target.value.length);
+                        else if(fromPhone.value.length >= 0 && fromPhone.value.length <= 2){
+                            
                             fromPhone.classList.add('error');
                             fromPhone.nextElementSibling.classList.remove('none');
                             fromPhone.nextElementSibling.nextElementSibling.classList.add('none');
