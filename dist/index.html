@@ -432,7 +432,7 @@
                             !((e.which >= 82 && e.which <= 84) ||
                             (e.which >= 50 && e.which <= 51) ||
                             e.which == 49 || e.which == 69 ||
-                            e.which == 79 || e.which == 8) && e.target.value.length > 0 
+                            e.which == 79 || e.which == 8) && e.target.value.length >= 0 
                         ){
                             // 錯誤
                             store.classList.add('error');
@@ -560,7 +560,6 @@
                     },
 
                     // 4、amount 格式驗證
-
                     // 不能打數字以外
                     onlyNumber(e){
                         if( (e.which >= 37 && e.which <= 40) || (e.which >= 48 && e.which <= 57) || (e.which >= 8 && e.which <=9) || (e.which >= 96 && e.which < 105)){
