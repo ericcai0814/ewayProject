@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>eway</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <main id="app">
+        <section class="banner">
+            <div class="wrapper">
+                <h2>There is no one</h2>
+                <h2>who loves pain</h2>
+                <!-- 按鈕 -->
+                <button type="button" class="btn" @click="toForm">FORM</button>
+                <div class="text">
+                    <div class="title">
+                        <img src="img/cactus.png" class="cactus">
+                        <h5>paragraph</h5>
+                        <img src="img/cactus.png" class="cactus">
+                    </div>
+                    <ul>
+                        <li>Lorem ipsum dolor sit amet consectetur adipisicing elit.</li>
+                    </ul>
+                    <div class="title">
+                        <img src="img/cactus.png" class="cactus">
+                        <h5>paragraph</h5>
+                        <img src="img/cactus.png" class="cactus">
+                    </div>
+                    <ul>
+                        <li>Quisque sodales leo <span class="bold underline">vitae vulputate auctor.</span></li>
+                        <li>Proin ac justo ut nisl tincidunt imperdiet.Maecenas viverra libero a pellentesque blandit.</li>
+                        <li> Cras tristique tellus id leo bibendum, eu dapibus nisl accumsan.</li>
+                        <li>Donec ultrices sapien <span class="bold">vitae leo venenatis ullamcorper.</span></li>
+                    </ul>
+                    <!-- 獨木舟 & 泡泡 -->
+                    <div class="supBubble">
+                        <img src="./img/sup.png" alt="sup">
+                        <img src="./img/bubble.png" alt="bubble">
+                        <img src="./img/bubble2.png" alt="bubble">
+                        <img src="./img/paddle.png" alt="paddle">
+                    </div>
+                    
+                    <!-- 獨木舟 & 煙火 -->
+                    <div class="supFire">
+                        <img src="./img/sup2.png" alt="sup">
+                        <img src="./img/fire.png" alt="Fireworks">
+                        <img src="./img/paddle2.png" alt="paddle">
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="bgWave">
+            <div class="wave"></div>
+        </section>
+        <!-- 表單 -->
+        <div id="form"></div>
+        <section class="formWrapper">
+            <div class="form">
+                <div class="formContent">
+                    <div class="title">
+                        <p>FORM</p>
+                        <img src="./img/turtle.png" alt="turtle">
+                    </div>
+                    <div class="list">
+                        <label for="store">store</label>
+                        <img src="./img/arrow.png" alt="arrow">
+                        <input
+                            type="text"
+                            class="fromItem"
+                            id="store"
+                            list="storelist"
+                            placeholder="placeholder text"
+                            v-model.trim="dataCheck.store"
+                            @blur="storeCheck"
+                            @input="storeInputCheck"/>
+                        <datalist id="storelist" class="chooseItem">
+                            <template v-for="item in storeOption">
+                                <option>{{item}}</option>
+                            </template>
+                            <!-- <option value="store1">store1</option>
+                            <option value="store2">store2</option>
+                            <option value="store3">store3</option> -->
+                        </datalist>
+                        <p class="wrongTest none">required</p>
+                        <p class="wrongTest none">no result</p>
+                    </div>
+                    <div class="list">
+                        <label for="name">name</label>
+                        <input
+                            type="text"
+                            id="name"
+                            class="fromItem"
+                            placeholder="placeholder text"
+                            v-model.trim="dataCheck.name"
+                            @keydown="nameCheck_keydown($event)"
+                            @blur="nameCheck"
+                            />
+                        <p class="wrongTest none">required</p>
+                        <p class="wrongTest none">wrong format</p>
+                    </div>
+                    <div class="list">
+                        <label for="phone">phone</label>
+                        <input
+                            type="text"
+                            inputmode="numeric"
+                            id="phone"
+                            class="fromItem"
+                            maxlength="10"
+                            pattern="[0-9]*"
+                            placeholder="placeholder text"
+                            v-model.trim="dataCheck.phone"
+                            @keydown="phoneCheck_keydown($event)"
+                            @keyup="phoneNoChinese"
+                            @blur="phoneCheck"
+                            />
+                        <p class="wrongTest none">required</p>
+                        <p class="wrongTest none">wrong format</p>
+                    </div>
+                    <div class="list">
+                        <label for="amount">Amount of consumption</label>
+                        <input
+                            type="text"
+                            inputmode="numeric"
+                            id="amount"
+                            class="fromItem"
+                            pattern="[0-9]*"
+                            placeholder="placeholder text"
+                            v-model.trim="dataCheck.amount"
+                            @keydown="amountCheck_keydown($event)"
+                            @keyup="amountNoChinese"
+                            @blur="amountCheck"/>
+                        <p class="wrongTest none">required</p>
+                        <p class="wrongTest none">wrong format</p>
+                    </div>
+                    <div class="list">
+                        <label for="payment">payment</label>
+                        <img src="./img/arrow.png" alt="arrow">
+                        <select id="payment" class="fromItem" v-model.trim="dataCheck.payment" @blur="paymentCheck">
+                            <option value="digital payment" selected>digital payment</option>
+                            <option value="ATM">ATM</option>
+                        </select>
+                        <p class="wrongTest none">required</p>
+                        <p class="wrongTest none">wrong format</p>
+                    </div>
+                </div>
+                <!-- 按鈕 -->
+                <button type="button" id="submit" class="submit" @click="submitCheck">
+                    <img class="success none" src="img/v.png" alt="">
+                    <img class="failure none" src="img/x.png" alt="">
+                    submit
+                    <!-- success -->
+                    <!-- failure -->
+                    <span class="error none">This person does not exist</span>
+                </button>
+            </div>
+        </section>
+        <!-- 獎牌 -->
+        <section class="awardWrapper">
+            <ul class="award">
+                <!-- 綠色獎牌 -->
+                <li class="awardItem" v-for="item in awardA" :key="item.id">
+                    <div class="certificate typeA">
+                        <p>{{item.id}}</p>
+                    </div>
+                    <p class="awardNameA">{{item.name}}</p>
+                    <div class="markA">
+                        <p>{{item.mark}}</p>
+                    </div>
+                </li>
+                <!-- 藍色獎牌 -->
+                <li class="awardItem" v-for="item in awardD" :key="item.id">
+                    <div class="certificate typeD">
+                        <p>{{item.id}}</p>
+                    </div>
+                    <p class="awardNameD">{{item.name}}</p>
+                    <div class="markD">
+                        <p>{{item.mark}}</p>
+                    </div>
+                </li>
+            </ul>
+        </section>
+        <!-- 燈塔 -->
+        <section class="lighthouseWrapper">
+            <div class="title">
+                <img src="img/leftLine.png" alt="leftLine">
+                <div class="text">
+                    <h4>13.32</h4>
+                    <h4>who seeks after it and<br>
+                        wants to have it
+                    </h4>
+                </div>
+                <img src="img/rightLine.png" alt="rightLine">
+            </div>
+            <div class="lighthouse">
+                <img src="img/lighthouse.png" alt="lighthouse">
+            </div>
+        </section>
+        <!-- 最下面區域 -->
+        <section class="end">
+            <div class="marketWrapper">
+                <h4>Neque porro quisquam<br>
+                    est qui dolorem!
+                </h4>
+                <img src="img/market.png" alt="market">
+            </div>
+        </section>
+    </main>
+    <script src="vendors/vue/vue.global.prod.js"></script>
+    <script>
+        const app = Vue.createApp({
+            data(){
+                return{
+                    dataCheck:{
+                        store:"",
+                        name:"",
+                        phone:"",
+                        amount:"",
+                        payment:"digital payment"
+                    },
+                    storeOption:["store1", "store2", "store3"],
+                    checkdata:{
+                        store:false,
+                        name:false,
+                        phone:false,
+                        amount:false,
+                        payment:true
+                    },
+                    awardA:[
+                        {
+                            id: "A",
+                            name: "dehumidifier",
+                            mark: "ONE",
+                        },
+                        {
+                            id: "B",
+                            name: "range hood",
+                            mark: "ONE",
+                        },
+                        {
+                            id: "C",
+                            name: "vacuum cleaner",
+                            mark: "ONE",
+                        }
+                    ],
+                    awardD:[
+                        {
+                            id: "D",
+                            name: "toaster",
+                            mark: "ONE",
+                        },
+                        {
+                            id: "E",
+                            name: " scale",
+                            mark: "ONE",
+                        },
+                        {
+                            id: "F",
+                            name: "straightening iron",
+                            mark: "ONE",
+                        },
+                        {
+                            id: "G",
+                            name: "vacuum cleaner",
+                            mark: "FIVE",
+                        },
+                        {
+                            id: "H",
+                            name: "rice cooker",
+                            mark: "TEN",
+                        }
+                    ]
+                }
+            },
+            mounted(){
+
+            },
+            methods:{
+                // 點擊form按鈕到form表單
+                toForm(){
+                    let form = document.getElementById('form');
+                    const topOffset = form.getBoundingClientRect().top + window.pageYOffset;
+                    window.scrollTo({ top: topOffset, behavior: 'smooth' });
+                },
+                // store條件判斷
+                storeCheck(){
+                    let store = document.getElementById('store');
+                    if(this.dataCheck.store == "store1" || this.dataCheck.store == "store2" || this.dataCheck.store == "store3"){
+                        // 驗證通過
+                        store.classList.remove('wrong');
+                        store.nextElementSibling.nextElementSibling.classList.add('none');
+                        this.checkdata.store = true;
+                    }
+                    else if(this.dataCheck.store == ""){
+                        // 驗證未通過(未填寫)
+                        store.classList.add('wrong');
+                        store.nextElementSibling.nextElementSibling.classList.remove('none');
+                        this.checkdata.store = false;
+                    }
+                },
+                storeInputCheck(){
+                    let store = document.getElementById('store');
+                    let match = this.storeOption.filter(option => option.includes(this.dataCheck.store)) ;
+                    // console.log(match);
+                    if (match.length === 0) {
+                        store.classList.add('wrong');
+                        store.nextElementSibling.nextElementSibling.nextElementSibling.classList.remove('none');
+                        store.nextElementSibling.nextElementSibling.classList.add('none');
+                    }else{
+                        store.classList.remove('wrong');
+                        store.nextElementSibling.nextElementSibling.nextElementSibling.classList.add('none');
+                        store.nextElementSibling.nextElementSibling.classList.add('none');
+                    }
+                },
+                // name不能打數字
+                nameCheck_keydown(e){
+                    // console.log(e.which);
+                    if((e.which >= 48 && e.which <= 57) || (e.which > 8 && e.which <=9) || (e.which >= 96 && e.which < 105)){
+                        e.preventDefault();
+                    }
+                },
+                // name條件判斷
+                nameCheck(){
+                    let name = document.getElementById('name');
+                    if(this.dataCheck.name == ""){
+                        // 若為空值
+                        // 驗證未通過
+                        name.classList.add('wrong');
+                        name.nextElementSibling.classList.remove('none');
+                        this.checkdata.name = false;
+                    }else{
+                        // 驗證通過
+                        name.classList.remove('wrong');
+                        name.nextElementSibling.classList.add('none');
+                        this.checkdata.name = true;
+                    }
+                },
+                // phone只能數字
+                phoneCheck_keydown(e){
+                    if((e.which >= 48 && e.which <= 57) || (e.which >= 8 && e.which <=9) || (e.which >= 96 && e.which < 105)){
+
+                    }else{
+                        e.preventDefault();
+                    }
+                },
+                // phone條件判斷
+                phoneCheck(){
+                    let phone = document.getElementById('phone');
+                    const regex = /^(\+?886-?|0)?9\d{8}$/;
+                    if(this.dataCheck.phone.length !== 10 && this.dataCheck.phone.length !== 0){
+                        // 若數字長度不為10
+                        // 驗證未通過
+                        phone.classList.add('wrong');
+                        phone.nextElementSibling.classList.add('none');
+                        phone.nextElementSibling.nextElementSibling.classList.remove('none');
+                        this.checkdata.phone = false;
+                    }else if(this.dataCheck.phone.length == 0){
+                        // 若為空值
+                        // 驗證未通過
+                        phone.classList.add('wrong');
+                        phone.nextElementSibling.classList.remove('none');
+                        phone.nextElementSibling.nextElementSibling.classList.add('none');
+                        this.checkdata.phone = false;
+                    }else{
+                        // 驗證通過
+                        if(regex.test(phone.value)){
+                            phone.classList.remove('wrong');
+                            phone.nextElementSibling.classList.add('none');
+                            this.checkdata.phone = true;
+                        }else{
+                            // 驗證未通過
+                            phone.classList.add('wrong');
+                            phone.nextElementSibling.nextElementSibling.classList.remove('none');
+                            this.checkdata.phone = false;
+                        }
+                    }
+                },
+                // keyup不能打中文
+                phoneNoChinese(){
+                    let str = (this.dataCheck.phone).replace(/\D/g, "");
+                    this.dataCheck.phone = str;
+                },
+                // amount只能數字
+                amountCheck_keydown(e){
+                    const regex = /^0+(?=\d)/; 
+                    if((e.which >= 48 && e.which <= 57) || (e.which >= 8 && e.which <=9) || (e.which >= 96 && e.which < 105)){
+                        const result = this.dataCheck.amount.replace(regex, "");
+                        this.dataCheck.amount = result ;
+                    }else{
+                        e.preventDefault();
+                    }
+                },
+                // amount條件判斷
+                amountCheck(){
+                    let amount = document.getElementById('amount');
+                    if(this.dataCheck.amount.length == 0){
+                        // 若數字長度為0
+                        // 驗證未通過
+                        amount.classList.add('wrong');
+                        amount.nextElementSibling.classList.remove('none');
+                        this.checkdata.amount = false;
+                    }else{
+                        // 驗證通過
+                        amount.classList.remove('wrong');
+                        amount.nextElementSibling.classList.add('none');
+                        this.checkdata.amount = true;
+                    }
+                },
+                // keyup不能打中文
+                amountNoChinese(){
+                    let str = (this.dataCheck.amount).replace(/\D/g, "");
+                    this.dataCheck.amount = str;
+                },
+                // payment條件判斷
+                paymentCheck(){
+                    let payment = document.getElementById('payment');
+                    if(this.dataCheck.payment == "ATM" || this.dataCheck.payment == "digital payment"){
+                        // 驗證通過
+                        payment.classList.remove('wrong');
+                        payment.nextElementSibling.classList.add('none');
+                        this.checkdata.payment = true;
+                    }else{
+                        // 驗證未通過
+                        payment.classList.add('wrong');
+                        payment.nextElementSibling.classList.remove('none');
+                        this.checkdata.payment = false;
+                    }
+                },
+                // submit按鈕送出判斷
+                submitCheck(){
+                    this.storeCheck();
+                    this.nameCheck();
+                    this.phoneCheck();
+                    this.amountCheck();
+                    this.paymentCheck();
+                    let submit = document.querySelector('.submit');
+                    let success = document.querySelector('.success');
+                    let failure = document.querySelector('.failure');
+                    let error = document.querySelector('.error');
+                    // console.log(this.checkdata);
+                    if(this.checkdata.store && this.checkdata.name && this.checkdata.phone && this.checkdata.amount && this.checkdata.payment){
+                        // 驗證通過
+                        submit.classList.add('submitSuccess');
+                        submit.classList.remove('submitFailure');
+                        success.classList.remove('none');
+                        failure.classList.add('none');
+                        error.classList.add('none');
+                    }else{
+                        // 驗證未通過
+                        submit.classList.remove('submitSuccess');
+                        submit.classList.add('submitFailure');
+                        success.classList.add('none');
+                        failure.classList.remove('none');
+                        error.classList.remove('none');
+                    };
+                },
+                
+            }
+        }).mount('#app');
+    </script>
+</body>
+</html>

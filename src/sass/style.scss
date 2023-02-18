@@ -253,7 +253,7 @@ div.container {
                             animation: pandle_move_2 2.3s linear infinite;
                         }
                     }
-              }
+                }
             }
         }
 
@@ -261,19 +261,21 @@ div.container {
         div.theWavesContainer {
             width: 100%;
             overflow: hidden;
+            border: none;
             div.theWaves {
                 display: block;
                 margin-top: 34px;
-                height: 110px;
+                height: 109px;
                 width: 200%;
                 background-repeat: repeat-x;
-                background-image: url("../img/waves.png");
+                background-image: url("../img/sea.png");
                 animation: theWaves 10s linear infinite;
-                opacity: 0.8;
             }
         }
     }
 
+
+    // ========== 表單 ========== // 
     article.main {
         max-width: 1920px;
         background-color: #E2D9D3;
@@ -328,6 +330,7 @@ div.container {
                     font-style: normal;
                     font-weight: 700;
                 }
+
                 // turtle
                 img {
                     position: absolute;
@@ -368,6 +371,7 @@ div.container {
                         top: 47%;
                         z-index: 1;
                     }
+                    // 錯誤提示
                     .error_Msg{
                         color: red;
                         position: absolute;
@@ -407,7 +411,7 @@ div.container {
                             opacity: 0;
                         }
 
-                        // 格式錯誤
+                        // 格式錯誤邊框
                         &.error {
                             border: 3px solid #E06D6D;
                         }
@@ -442,6 +446,8 @@ div.container {
 
             }
         }
+
+        // submit btn
         .main_btn {
             display: contents;
             box-shadow: 0 4px 10px rgba(40, 35, 35, 0.35), 0 -4px 10px rgba(255, 255, 255, 0.9);
@@ -483,6 +489,8 @@ div.container {
         .main_btn.none{
             display: none;
         }
+
+        // 抽獎區
         div.raffleArea {
             margin-top: 40px;
             background-image: url("../img/raffleSand.svg");
@@ -575,6 +583,8 @@ div.container {
 
             }
         }
+
+        // 燈塔
         .lighthouse_wrap {
             display: flex;
             flex-direction: column;
@@ -613,6 +623,8 @@ div.container {
             }
         }
     }
+
+    // 商城
     footer.shopMall_wrap {
         margin-top: 40px;
         background-color: $Primary_Color_1;
@@ -638,6 +650,8 @@ div.container {
     }
 }
 
+// ========== animation ========== // 
+
 // firerWork 的動畫
 @keyframes enlargeAndFadeOut {
     0% {
@@ -654,7 +668,7 @@ div.container {
     }
 }
 
-// 船桨往上滑动的動畫_1
+// 船槳往上滑動的動畫_1
 @keyframes pandle_move_1 {
     0% {
         transform: rotate(0deg);
@@ -667,7 +681,7 @@ div.container {
     }
 }
 
-// 船桨往上滑动的動畫_2
+// 船槳往上滑動的動畫_2
 @keyframes pandle_move_2 {
     0% {
         transform: rotate(110deg);
@@ -683,19 +697,25 @@ div.container {
 // 泡泡往上飄動的動畫_1 
 @keyframes bubbleUp_1 {
     0% {
-        transform: translateY(0);
+        transform: translate(0,0);
+    }
+    25%{
+        transform: translate(3px, -10px);
     }
     100% {
-        transform: translateY(-20px);
+        transform: translate(-9px, -20px);
     }
 }
 // 泡泡往上飄動的動畫_2 
 @keyframes bubbleUp_2 {
     0% {
-        transform: translateY(0);
+        transform: translate(0px, 0px);
+    }
+    25%{
+        transform: translate(-5px, -5px);
     }
     100% {
-        transform: translateY(-20px);
+        transform: translate(10px, -20px);
     }
 }
 
