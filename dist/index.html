@@ -405,17 +405,18 @@
                             this.inputData.selectedStore == "store2" || 
                             this.inputData.selectedStore == "store3" 
                             ){
-                            
                             store.classList.remove('error');
                             store.nextElementSibling.classList.add('none');
                             store.nextElementSibling.nextElementSibling.classList.add('none');
                             this.submitData.selectedStore = true;
-                            console.log("輸入正確");
+                            // console.log("輸入正確");
                         }
                         else if(
+                            // 輸入值錯誤
                             !(this.inputData.selectedStore == "store1" ||
                             this.inputData.selectedStore == "store2" || 
                             this.inputData.selectedStore == "store3" )
+                            // console.log("輸入錯誤");
                         ){
                             store.classList.add('error');
                             store.nextElementSibling.classList.add('none');
@@ -424,14 +425,14 @@
                         }
                     },
 
+                    // 空值輸入 required提示
                     required (){
-                        // 空值輸入 required提示
                         if(this.inputData.selectedStore == ""){
                             store.classList.add('error');
                             store.nextElementSibling.classList.remove('none');
                             store.nextElementSibling.nextElementSibling.classList.add('none');
                             this.submitData.name = false;
-                            console.log("空值錯誤");
+                            // console.log("空值錯誤");
                         }
                     },
 
@@ -444,6 +445,7 @@
                     // 輸入數字錯誤
                     unNumber(e){
                         let fromName = document.getElementById('fromName');
+                        // 數字區間
                         if(
                         (e.which >= 48 && e.which <= 57) || 
                         (e.which > 8 && e.which <=9) || 
@@ -452,6 +454,7 @@
                             fromName.nextElementSibling.classList.add('none');
                             fromName.nextElementSibling.nextElementSibling.classList.remove('none');
                             this.submitData.name = false;
+                            // console.log("輸入錯誤");
                         }
                     },
 
@@ -498,20 +501,21 @@
                             fromPhone.nextElementSibling.classList.add('none');
                             fromPhone.nextElementSibling.nextElementSibling.classList.remove('none');
                             this.submitData.name = false;
-                            console.log("數字錯誤");
+                            // console.log("數字錯誤");
                         }
-                        // 回車鍵使長度 == 0 提示 required
-                        else if(fromPhone.value.length >= 0 && fromPhone.value.length <= 2){
+                        // 回車鍵使長度 === 0 提示 required
+                        else if(fromPhone.value.length === 0){
                             
                             fromPhone.classList.add('error');
                             fromPhone.nextElementSibling.classList.remove('none');
                             fromPhone.nextElementSibling.nextElementSibling.classList.add('none');
                             this.submitData.phone = false;
+                            // console.log("空值錯誤");
                         }
                     },
                     checkPhone(){
 
-                        // 字數少於10錯誤
+                        
                         let fromPhone = document.getElementById('fromPhone');
                         // 空值錯誤
                         if(this.inputData.phone == ""){
@@ -519,18 +523,15 @@
                             fromPhone.nextElementSibling.classList.remove('none');
                             fromPhone.nextElementSibling.nextElementSibling.classList.add('none');
                             this.submitData.phone = false;
-                            // console.log(false);
-                            console.log("空值錯誤");
+                            // console.log("空值錯誤");
                         }
-
+                        // 字數少於10錯誤
                         if( this.inputData.phone.length < 10){
-                            
                             fromPhone.classList.add('error');
                             fromPhone.nextElementSibling.classList.add('none');
                             fromPhone.nextElementSibling.nextElementSibling.classList.remove('none');
                             this.submitData.phone = false;
-                            // console.log(false);
-                            console.log("字數少於10錯誤");
+                            // console.log("字數少於10錯誤");
                         }
                         // 格式錯誤
                         if(!this.phoneRule(this.inputData.phone)){
@@ -538,16 +539,14 @@
                             fromPhone.nextElementSibling.classList.add('none');
                             fromPhone.nextElementSibling.nextElementSibling.classList.remove('none');
                             this.submitData.phone = false;
-                            // console.log(false);
-                            console.log("格式錯誤");
+                            // console.log("格式錯誤");
                         }else{
                             // 輸入正確
                             fromPhone.classList.remove('error');
                             fromPhone.nextElementSibling.classList.add('none');
                             fromPhone.nextElementSibling.nextElementSibling.classList.add('none');
                             this.submitData.phone = true;
-                            // console.log(true);
-                            console.log("輸入正確");
+                            // console.log("輸入正確");
                         }
                         
                     },
@@ -555,8 +554,12 @@
                     // 4、amount 格式驗證
                     // 不能打數字以外
                     onlyNumber(e){
-                        if( (e.which >= 37 && e.which <= 40) || (e.which >= 48 && e.which <= 57) || (e.which >= 8 && e.which <=9) || (e.which >= 96 && e.which < 105)){
-
+                        if( 
+                            (e.which >= 37 && e.which <= 40) || 
+                            (e.which >= 48 && e.which <= 57) || 
+                            (e.which >= 8 && e.which <=9) || 
+                            (e.which >= 96 && e.which < 105)
+                            ){
                         }else{
                             e.preventDefault();
                         }
@@ -569,13 +572,13 @@
                             amount.classList.add('error');
                             amount.nextElementSibling.classList.remove('none');
                             this.submitData.amount = false;
-                            // console.log(false);
+                            // console.log("輸入錯誤");
                         }else{
                             // 驗證通過
                             amount.classList.remove('error');
                             amount.nextElementSibling.classList.add('none');
                             this.submitData.amount = true;
-                            // console.log(true);
+                            // console.log("輸入正確");
                         }
                     },
 
@@ -587,13 +590,13 @@
                             payment.classList.remove('error');
                             payment.nextElementSibling.classList.add('none');
                             this.submitData.payment = true;
-                            // console.log(true);
+                            // console.log("輸入正確");
                         }else{
-                            // 錯誤
+                            // 輸入錯誤
                             payment.classList.add('error');
                             payment.nextElementSibling.classList.remove('none');
                             this.submitData.payment = false;
-                            // console.log(false);
+                            // console.log("輸入錯誤");
                         }
                     },
 
@@ -626,15 +629,15 @@
                             && this.submitData.phone 
                             && this.submitData.amount 
                             && this.submitData.payment){
-                            // console.log("驗證通過");
-                            success.classList.remove('none');
-                            submit.classList.add('none');
-                            failure.classList.add('none');
+                                success.classList.remove('none');
+                                submit.classList.add('none');
+                                failure.classList.add('none');
+                                // console.log("驗證通過");
                         }else{
-                            // console.log("驗證未通過");
                             submit.classList.add('none');
                             success.classList.add('none');
                             failure.classList.remove('none');
+                            // console.log("驗證未通過");
                         };
                     },
 
