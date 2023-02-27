@@ -415,6 +415,11 @@ div.container {
                             // 要寫JS
                             opacity: 0;
                         }
+                        &::-webkit-outer-spin-button,
+                        &::-webkit-inner-spin-button {
+                            -webkit-appearance: none;
+                            margin: 0;
+                        }
 
                         // 格式錯誤邊框
                         &.error {
