@@ -127,7 +127,8 @@ div.container {
                 justify-content: space-between;
                 max-width: 808px;
                 width: 95%;
-                padding: 24px 16px;
+                padding: 0px 16px 24px;
+                // padding: 24px 16px;
                 margin: 0 auto;
                 border: 2px solid #B57556;
                 border-radius: 20px;
@@ -143,8 +144,7 @@ div.container {
                 }
 
                 div.section {
-                    max-width: 776px;
-                    width: 95%;
+                    width: 100%;
                     @media all and (max-width: 414px) {
                         max-width: 334px;
                         width: 95%;
@@ -156,10 +156,12 @@ div.container {
                         position: relative;
                         margin-bottom: 16px;
                         width: fit-content;
-                        margin: 0 auto;
+                        margin: 20px auto;
                         p {
                             color: $Primary_Color_1;
                             margin: 0 auto;
+                            font-weight: 700;
+                            font-size: 18px;
                             max-width: 92px;
                             width: 95%;
                             text-align: center;
@@ -167,22 +169,23 @@ div.container {
                         img {
                             &:first-child {
                                 position: absolute;
-                                right: -33%;
+                                right: -39%;
                                 top: -10px;
 
                             }
                             &:last-child {
                                 position: absolute;
-                                left: -40%;
+                                left: -35%;
                                 top: -10px;
                             }
                         }
                     }
                     ol.orderList {
-                        padding: 0 16px;
+                        padding: 0px 0px 0px 16px;
                         list-style: decimal;
                         color: $Primary_Color_1;
                         li {
+
                             &:first-child span {
                                 font-weight: bold;
                                 vertical-align: baseline;
@@ -492,7 +495,8 @@ div.container {
             text-align: center;
             color: #E06D6D;
             position: absolute;
-            left: 42%;
+            left: 50%;
+            transform: translateX(-50%);
             }
         }
         .main_btn.none{
