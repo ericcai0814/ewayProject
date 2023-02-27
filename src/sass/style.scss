@@ -48,6 +48,8 @@ div.container {
     div.header {
         position: relative;
         z-index: 2;
+
+        // 白色線條
         div.whiteWaves {
             overflow: hidden;
             img {
@@ -82,6 +84,7 @@ div.container {
                 font-weight: 700;
                 margin: 0 auto;
                 max-width: 328px;
+                width: 95%;
                 font-style: normal;
                 letter-spacing: 0.2em;
                 text-align: center;
@@ -96,6 +99,7 @@ div.container {
                 }
                 margin-bottom: 32px;
             }
+            // 按鈕
             div.top_btn {
                 position: relative; // 為了要覆蓋白色海浪
                 z-index: 999;
@@ -114,38 +118,36 @@ div.container {
                     letter-spacing: 0.2em;
                 }
             }
+
+            // 第一段主題文字
             div.top_Paragraph {
                 background-color: $Primary_Color_3;
                 display: flex;
                 flex-direction: column;
                 justify-content: space-between;
                 max-width: 808px;
+                width: 95%;
                 padding: 24px 16px;
                 margin: 0 auto;
                 border: 2px solid #B57556;
                 border-radius: 20px;
                 position: relative;
                 z-index: 999; // 為了要覆蓋白色海浪
-                @media all and (max-width: 850px) {
-                    width: 780px;
-                }
-                @media all and (max-width: 800px) {
-                    width: 720px;
-                }
-                @media all and (max-width: 728px) {
-                    width: 660px;
-                }
-                @media all and (max-width: 670px) {
-                    width: 500px;
+                @media all and (max-width: 768px) {
+                    max-width: 660px;
+                    width: 95%;
                 }
                 @media all and (max-width: 414px) {
-                    width: 366px;
+                    max-width: 366px;
+                    width: 95%;
                 }
 
                 div.section {
                     max-width: 776px;
+                    width: 95%;
                     @media all and (max-width: 414px) {
-                        width: 334px;
+                        max-width: 334px;
+                        width: 95%;
                     }
                     &:first-child {
                         margin-bottom: 24.5px;
@@ -159,6 +161,7 @@ div.container {
                             color: $Primary_Color_1;
                             margin: 0 auto;
                             max-width: 92px;
+                            width: 95%;
                             text-align: center;
                         }
                         img {
@@ -175,13 +178,10 @@ div.container {
                             }
                         }
                     }
-
-                    // FIXME 文本要剛好填滿父層
                     ol.orderList {
                         padding: 0 16px;
                         list-style: decimal;
                         color: $Primary_Color_1;
-                        // white-space: nowrap; // FIXME
                         li {
                             &:first-child span {
                                 font-weight: bold;
@@ -278,32 +278,30 @@ div.container {
     // ========== 表單 ========== // 
     article.main {
         max-width: 1920px;
+        width: 100%;
         background-color: #E2D9D3;
         padding: 60px 0 58px;
         div.form {
             border-radius: 16px;
             background-color: #fff;
             margin: 0 auto;
-            width: 100%;
+            width: 95%;
             max-width: 808px;
             height: 575px;
             position: relative;
             border: 2px solid $Primary_Color_2;
             box-shadow: 0 1px 20px rgba(73, 72, 72, 0.25);
             border-radius: 16px;
-            @media all and (max-width: 850px) {
-                width: 720px;
-            }
             @media all and (max-width: 768px) {
-                width: 640px;
-            }
-            @media all and (max-width: 670px) {
-                width: 500px;
+                max-width: 640px;
+                width: 95%;
             }
             @media all and (max-width: 414px) {
-                width: 366px;
+                max-width: 366px;
+                width: 95%;
             }
 
+            // topParagraph
             div.title {
                 display: flex;
                 flex-direction: row;
@@ -311,7 +309,8 @@ div.container {
                 margin: 0 auto;
                 background-color: #fff;
                 border: 2px solid $Primary_Color_2;
-                width: 123px;
+                max-width: 123px;
+                width: 95%;
                 height: 43px;
                 padding: 10px 20px;
                 border-radius: 50px;
@@ -321,7 +320,8 @@ div.container {
                 transform: translate(-50%, -50%);
                 p {
                     color: $Primary_Color_2;
-                    width: 83px;
+                    max-width: 83px;
+                    width: 95%;
                     height: 23px;
                     font-size: 18px;
                     line-height: 23px;
@@ -339,12 +339,14 @@ div.container {
                     animation: turtle_move 2s linear infinite;
                 }
             }
+
+            // from表單
             div.formCotent {
                 display: flex;
                 flex-direction: column;
 
                 div.formList {
-                    margin: 40px auto 20px;
+                    margin: 40px 0px 20px 2%;
                     position: relative;
                     label {
                         width: fit-content;
@@ -355,7 +357,8 @@ div.container {
                             display: block;
                             color: $Primary_Color_2;
                             content: "*";
-                            width: 5px;
+                            max-width: 5px;
+                            width: 95%;
                             position: absolute;
                             top: 0;
                             right: -5px;
@@ -365,9 +368,10 @@ div.container {
                     // 控制 dropDown.png
                     img {
                         display: block;
-                        width: 30px;
+                        width: 4%;
+                        min-width: 24px;
                         position: absolute;
-                        right: 3%;
+                        right: 6.5%;
                         top: 47%;
                         z-index: 1;
                     }
@@ -387,24 +391,22 @@ div.container {
                     .fromItem {
                         border: 1px solid $Primary_Color_1;
                         background-color: #fff;
-                        width: 768px;
+                        max-width: 768px;
+                        width: 95%;
                         height: 57px;
                         padding: 8px;
                         position: relative;
                         -webkit-appearance: none; // 關掉預設樣式
                         appearance: none;
                         border-radius: 20px;
-                        @media all and (max-width: 850px) {
-                            width: 680px;
-                        }
+                        font-size: 16px;
                         @media all and (max-width: 768px) {
-                            width: 600px;
-                        }
-                        @media all and (max-width: 670px) {
-                            width: 460px;
+                            max-width: 600px;
+                            width: 95%;
                         }
                         @media all and (max-width: 414px) {
-                            width: 326px;
+                            max-width: 326px;
+                            width: 95%;
                         }
                         &::-webkit-calendar-picker-indicator {
                             // 要寫JS
@@ -422,7 +424,8 @@ div.container {
                     select.chooseItem{
                         background: #fff;
                         color: #BDBDBD;
-                        width: 768px;
+                        max-width: 768px;
+                        width: 95%;
                         height: 57px;
                         padding: 8px;
                         position: relative;
@@ -441,7 +444,7 @@ div.container {
 
                 // 排除第一個item
                 .formList:not(:nth-child(-n+1)) {
-                    margin: 0 auto 20px;
+                    margin: 0px 0px 20px 2%;
                 }
 
             }
@@ -452,7 +455,7 @@ div.container {
             display: contents;
             box-shadow: 0 4px 10px rgba(40, 35, 35, 0.35), 0 -4px 10px rgba(255, 255, 255, 0.9);
             border-radius: 50px;
-            
+            position: relative;
             .default,
             .success,
             .failure {
@@ -469,14 +472,18 @@ div.container {
                     color: #E6FFB1;
                 }
             }
-            .failure{
-                margin-bottom: 0px;
-                p{
-                    color: #FFE3E3;
+            #failure{
+                
+                .failure{
+                    margin-bottom: 0px;
+                    p{
+                        color: #FFE3E3;
+                    }
                 }
             }
             button + p{
-            width: 202px;
+            max-width: 202px;
+            width: 95%;
             height: 21px;
             font-style: normal;
             font-weight: 400;
@@ -484,7 +491,8 @@ div.container {
             line-height: 150%;
             text-align: center;
             color: #E06D6D;
-            margin: 0 auto;
+            position: absolute;
+            left: 42%;
             }
         }
         .main_btn.none{
@@ -505,7 +513,8 @@ div.container {
                 list-style: none;
                 margin: 0 auto;
                 max-width: 600px;
-                @media all and (max-width: 630px) {
+                width: 95%;
+                @media all and (max-width: 768px) {
                     justify-content: center;
                     column-gap: 65px;
                     row-gap: 50px;
@@ -516,7 +525,8 @@ div.container {
                     column-gap: 16px;
                 }
                 li.raffleItem {
-                    width: 178px;
+                    max-width: 178px;
+                    width: 95%;
                     height: 112px;
                     background-color: #fff;
                     box-shadow: 0 8px 0 #EDEEF0;
@@ -546,7 +556,8 @@ div.container {
 
                     .certificate_ID.typeA {
                         background-image: url("../img/certificateA.svg");
-                        width: 66px;
+                        max-width: 66px;
+                        width: 95%;
                         height: 78px;
                         p {
                             padding-bottom: 10px;
@@ -554,7 +565,8 @@ div.container {
                     }
                     .certificate_ID.typeB {
                         background-image: url("../img/certificateD.svg");
-                        width: 65px;
+                        max-width: 65px;
+                        width: 95%;
                         height: 65px;
                     }
 
@@ -563,16 +575,20 @@ div.container {
                         font-weight: 700;
                         font-size: 18px;
                         line-height: 125%;
+                        text-align: center;
                         order: 1;
                     }
 
                     div.mark {
+                        width: 100%;
+                        max-width: 50px;
                         margin: 0 7px 25px auto;
                         border: 1px solid $Primary_Color_6;
                         padding: 3px 10px;
                         background: #FAFAFA;
                         border-radius: 50px;
                         p {
+                            display: block;
                             color: $Primary_Color_6;
                             font-size: 12px;
                             font-weight: 400;
@@ -592,11 +608,13 @@ div.container {
             align-items: center;
             gap: 20px;
             margin: 40px auto;
-            width: 274px;
+            max-width: 274px;
+            width: 95%;
             .title {
                 display: flex;
                 .content {
-                    width: 238px;
+                    max-width: 238px;
+                    width: 95%;
                     line-height: 166%;
                     h6 {
                         font-weight: 700;
@@ -613,13 +631,15 @@ div.container {
                 }
                 img {
                     display: block;
-                    width: 20px;
+                    max-width: 20px;
+                    width: 100%;
                     height: 75px;
                 }
             }
             img {
                 display: block;
-                width: 56px;
+                max-width: 56px;
+                width: 100%;
                 height: 194px;
             }
         }
@@ -644,7 +664,8 @@ div.container {
         img {
             display: block;
             margin: 0 auto;
-            width: 376px;
+            max-width: 376px;
+            width: 100%;
             height: 493px;
             padding-bottom: 40px;
         }
