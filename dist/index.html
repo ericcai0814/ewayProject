@@ -185,7 +185,6 @@
                                 class="fromItem"
                                 placeholder="placeholder text"
                                 v-model.trim="inputData.amount"
-                                @keydown="onlyNumber($event)"
                                 @input="checkAmount($event)"
                                 required
                             />
@@ -524,18 +523,6 @@
                         
                     },
 
-                    // 4、amount 格式驗證
-                    onlyNumber(e){
-                        if (!(
-                            (e.which >= 48 && e.which <= 57) ||  // 0-9
-                            (e.which >= 96 && e.which <= 105) || // numpad 0-9
-                            (e.which === 8) ||                   // backspace
-                            (e.which === 9) ||                   // tab
-                            (e.which === 46)                     // delete
-                        )) {
-                            e.preventDefault();
-                        }
-                    },
                     checkAmount(e) {
                         const input = e.target;
                         const required = input.nextElementSibling;
