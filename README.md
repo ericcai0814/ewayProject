@@ -1,5 +1,5 @@
 # ewayProject
-
+https://ericcai0814.github.io/ewayProject/dist/
 ## 使用技術
 *  使用 CSS animation 製作海浪、划槳、煙火及烏龜動畫
 *  使用 Sass 製作自適應網站 （BreakPoint為1920px、768px、414px）
